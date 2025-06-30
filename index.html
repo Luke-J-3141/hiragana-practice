@@ -1,713 +1,100 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Japanese Practice App</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #e2e8f0;
-        }
-
-        .container {
-            background: rgba(45, 55, 72, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            max-width: 900px;
-            width: 90%;
-            text-align: center;
-        }
-
-        h1 {
-            color: #f7fafc;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .mode-selector {
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .mode-btn {
-            background: linear-gradient(45deg, #4a5568, #2d3748);
-            color: #e2e8f0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .mode-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(45deg, #5a6578, #3d4758);
-        }
-
-        .mode-btn.active {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-color: rgba(102, 126, 234, 0.5);
-        }
-
-        .controls-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(74, 85, 104, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .toggle {
-            position: relative;
-            width: 50px;
-            height: 25px;
-            background: #4a5568;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .toggle.active {
-            background: #667eea;
-        }
-
-        .toggle::before {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 21px;
-            height: 21px;
-            background: white;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .toggle.active::before {
-            transform: translateX(25px);
-        }
-
-        .score {
-            background: linear-gradient(45deg, #4a5568, #2d3748);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #e2e8f0;
-            padding: 1rem;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .practice-area {
-            background: rgba(26, 32, 44, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            min-height: 350px;
-        }
-
-        .hiragana-display {
-            font-size: 6rem;
-            margin: 1rem 0;
-            color: #f7fafc;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .word-display {
-            font-size: 3rem;
-            margin: 1rem 0;
-            color: #f7fafc;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .romaji-display {
-            font-size: 2rem;
-            color: #cbd5e0;
-            margin: 1rem 0;
-        }
-
-        .audio-btn {
-            background: linear-gradient(45deg, #ed8936, #dd6b20);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            margin: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .audio-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .input-area {
-            margin: 2rem 0;
-        }
-
-        .text-input {
-            font-size: 2rem;
-            padding: 1rem;
-            border: 2px solid #4a5568;
-            border-radius: 10px;
-            text-align: center;
-            width: 300px;
-            margin: 1rem;
-            transition: all 0.3s ease;
-            background: rgba(26, 32, 44, 0.8);
-            color: #e2e8f0;
-        }
-
-        .text-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .text-input::placeholder {
-            color: #a0aec0;
-        }
-
-        .canvas-container {
-            margin: 2rem 0;
-        }
-
-        #drawingCanvas {
-            border: 2px solid #4a5568;
-            border-radius: 10px;
-            cursor: crosshair;
-            background: rgba(26, 32, 44, 0.8);
-        }
-
-        .canvas-controls {
-            margin: 1rem 0;
-        }
-
-        .control-btn {
-            background: linear-gradient(45deg, #4299e1, #3182ce);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            margin: 0.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .control-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-        }
-
-        .submit-btn {
-            background: linear-gradient(45deg, #48bb78, #38a169);
-            color: white;
-            border: none;
-            padding: 1rem 3rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .feedback {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 1rem 0;
-            padding: 1rem;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .correct {
-            background: linear-gradient(45deg, rgba(72, 187, 120, 0.3), rgba(56, 161, 105, 0.3));
-            border: 1px solid rgba(72, 187, 120, 0.5);
-            color: #9ae6b4;
-        }
-
-        .incorrect {
-            background: linear-gradient(45deg, rgba(245, 101, 101, 0.3), rgba(229, 62, 62, 0.3));
-            border: 1px solid rgba(245, 101, 101, 0.5);
-            color: #feb2b2;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .bounce {
-            animation: bounce 0.6s;
-        }
-
-        .word-info {
-            background: rgba(74, 85, 104, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-size: 1.1rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japanese Practice App</title>
+<link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🇯🇵 Japanese Practice</h1>
-        
-        <div class="mode-selector">
-            <button class="mode-btn active" onclick="setMode('sound')">🔊 Hiragana Sound</button>
-            <button class="mode-btn" onclick="setMode('drawing')">✏️ Hiragana Drawing</button>
-            <button class="mode-btn" onclick="setMode('wordSound')">🗣️ Word Pronunciation</button>
-            <button class="mode-btn" onclick="setMode('wordTranslation')">🔤 Word Translation</button>
+<div class="container">
+<h1>🇯🇵 Japanese Practice</h1>
+
+<div class="mode-selector">
+    <button class="mode-btn active" onclick="setMode('sound')">🔊 Hiragana Sound</button>
+    <button class="mode-btn" onclick="setMode('drawing')">✏️ Hiragana Drawing</button>
+    <button class="mode-btn" onclick="setMode('wordSound')">🗣️ Word Pronunciation</button>
+    <button class="mode-btn" onclick="setMode('wordTranslation')">🔤 Word Translation</button>
+</div>
+
+<div class="controls-row">
+    <div class="toggle-container">
+        <span>Auto-play sound:</span>
+        <div class="toggle active" id="autoPlayToggle" onclick="toggleAutoPlay()"></div>
+    </div>
+    
+    <div class="score">
+        Score: <span id="score">0</span> / <span id="total">0</span> 
+        (<span id="percentage">0</span>%)
+    </div>
+</div>
+
+<div class="practice-area">
+    <!-- Sound Practice Mode -->
+    <div id="soundMode">
+        <div class="hiragana-display" id="hiraganaChar">あ</div>
+        <button class="audio-btn" onclick="playSound()">🔊 Play Sound</button>
+        <div class="input-area">
+            <input type="text" class="text-input" id="romajiInput" placeholder="Type romaji..." maxlength="5">
         </div>
+        <button class="submit-btn" onclick="checkRomaji()">Check Answer</button>
+    </div>
 
-        <div class="controls-row">
-            <div class="toggle-container">
-                <span>Auto-play sound:</span>
-                <div class="toggle active" id="autoPlayToggle" onclick="toggleAutoPlay()"></div>
-            </div>
-            
-            <div class="score">
-                Score: <span id="score">0</span> / <span id="total">0</span> 
-                (<span id="percentage">0</span>%)
-            </div>
+    <!-- Drawing Practice Mode -->
+    <div id="drawingMode" class="hidden">
+        <div class="romaji-display" id="drawRomajiChar">a</div>
+        <p>Draw the hiragana character:</p>
+        <div id="hintDisplay" class="hint-display hidden"></div>
+        <div class="canvas-container">
+            <canvas id="drawingCanvas" width="300" height="300"></canvas>
         </div>
-
-        <div class="practice-area">
-            <!-- Sound Practice Mode -->
-            <div id="soundMode">
-                <div class="hiragana-display" id="hiraganaChar">あ</div>
-                <button class="audio-btn" onclick="playSound()">🔊 Play Sound</button>
-                <div class="input-area">
-                    <input type="text" class="text-input" id="romajiInput" placeholder="Type romaji..." maxlength="3">
-                </div>
-                <button class="submit-btn" onclick="checkRomaji()">Check Answer</button>
-            </div>
-
-            <!-- Drawing Practice Mode -->
-            <div id="drawingMode" class="hidden">
-                <div class="romaji-display" id="drawRomajiChar">a</div>
-                <p>Draw the hiragana character:</p>
-                <div class="canvas-container">
-                    <canvas id="drawingCanvas" width="300" height="300"></canvas>
-                </div>
-                <div class="canvas-controls">
-                    <button class="control-btn" onclick="clearCanvas()">Clear</button>
-                    <button class="submit-btn" onclick="checkDrawing()">Check Drawing</button>
-                </div>
-            </div>
-
-            <!-- Word Sound Practice Mode -->
-            <div id="wordSoundMode" class="hidden">
-                <div class="word-display" id="wordDisplay">こんにちは</div>
-                <button class="audio-btn" onclick="playWordSound()">🔊 Play Word</button>
-                <div class="input-area">
-                    <input type="text" class="text-input" id="wordRomajiInput" placeholder="Type pronunciation..." maxlength="15">
-                </div>
-                <button class="submit-btn" onclick="checkWordRomaji()">Check Answer</button>
-            </div>
-
-            <!-- Word Translation Practice Mode -->
-            <div id="wordTranslationMode" class="hidden">
-                <div class="word-display" id="translationWordDisplay">こんにちは</div>
-                <div class="word-info">
-                    <div>Pronunciation: <span id="wordPronunciation">konnichiwa</span></div>
-                </div>
-                <button class="audio-btn" onclick="playTranslationWordSound()">🔊 Play Word</button>
-                <div class="input-area">
-                    <input type="text" class="text-input" id="translationInput" placeholder="Type English meaning..." maxlength="20">
-                </div>
-                <button class="submit-btn" onclick="checkTranslation()">Check Answer</button>
-            </div>
-
-            <div id="feedback" class="feedback hidden"></div>
-            
-            <button class="control-btn" onclick="nextCharacter()" style="margin-top: 1rem;">Next →</button>
+        <div class="canvas-controls">
+            <button class="control-btn" onclick="clearCanvas()">Clear</button>
+            <button class="hint-btn" onclick="toggleHint()">💡 Show Hint</button>
+            <button class="submit-btn" onclick="checkDrawing()">Check Drawing</button>
         </div>
     </div>
 
-    <script>
-        // Hiragana data
-        const hiraganaData = {
-            'あ': 'a', 'い': 'i', 'う': 'u', 'え': 'e', 'お': 'o',
-            'か': 'ka', 'き': 'ki', 'く': 'ku', 'け': 'ke', 'こ': 'ko',
-            'さ': 'sa', 'し': 'shi', 'す': 'su', 'せ': 'se', 'そ': 'so',
-            'た': 'ta', 'ち': 'chi', 'つ': 'tsu', 'て': 'te', 'と': 'to',
-            'な': 'na', 'に': 'ni', 'ぬ': 'nu', 'ね': 'ne', 'の': 'no',
-            'は': 'ha', 'ひ': 'hi', 'ふ': 'fu', 'へ': 'he', 'ほ': 'ho',
-            'ま': 'ma', 'み': 'mi', 'む': 'mu', 'め': 'me', 'も': 'mo',
-            'や': 'ya', 'ゆ': 'yu', 'よ': 'yo',
-            'ら': 'ra', 'り': 'ri', 'る': 'ru', 'れ': 're', 'ろ': 'ro',
-            'わ': 'wa', 'を': 'wo', 'ん': 'n'
-        };
+    <!-- Word Sound Practice Mode -->
+    <div id="wordSoundMode" class="hidden">
+        <div class="difficulty-selector">
+            <button class="difficulty-btn active" onclick="setWordDifficulty('easy')">Easy</button>
+            <button class="difficulty-btn" onclick="setWordDifficulty('normal')">Normal</button>
+            <button class="difficulty-btn" onclick="setWordDifficulty('hard')">Hard</button>
+            <button class="difficulty-btn" onclick="setWordDifficulty('extreme')">Extreme</button>
+        </div>
+        <div class="word-display" id="wordDisplay">こんにちは</div>
+        <button class="audio-btn" onclick="playWordSound()">🔊 Play Word</button>
+        <div class="input-area">
+            <input type="text" class="text-input" id="wordRomajiInput" placeholder="Type pronunciation..." maxlength="25">
+        </div>
+        <button class="submit-btn" onclick="checkWordRomaji()">Check Answer</button>
+    </div>
 
-        // Japanese words data
-        const wordData = {
-            'こんにちは': { romaji: 'konnichiwa', english: 'hello' },
-            'ありがとう': { romaji: 'arigatou', english: 'thank you' },
-            'おはよう': { romaji: 'ohayou', english: 'good morning' },
-            'さようなら': { romaji: 'sayounara', english: 'goodbye' },
-            'はじめまして': { romaji: 'hajimemashite', english: 'nice to meet you' },
-            'すみません': { romaji: 'sumimasen', english: 'excuse me' },
-            'いただきます': { romaji: 'itadakimasu', english: 'before eating' },
-            'ごちそうさま': { romaji: 'gochisousama', english: 'after eating' },
-            'おやすみ': { romaji: 'oyasumi', english: 'good night' },
-            'げんき': { romaji: 'genki', english: 'healthy' },
-            'がっこう': { romaji: 'gakkou', english: 'school' },
-            'ほん': { romaji: 'hon', english: 'book' },
-            'みず': { romaji: 'mizu', english: 'water' },
-            'たべもの': { romaji: 'tabemono', english: 'food' },
-            'いえ': { romaji: 'ie', english: 'house' },
-            'ともだち': { romaji: 'tomodachi', english: 'friend' },
-            'かぞく': { romaji: 'kazoku', english: 'family' },
-            'しごと': { romaji: 'shigoto', english: 'work' },
-            'でんわ': { romaji: 'denwa', english: 'telephone' },
-            'くるま': { romaji: 'kuruma', english: 'car' }
-        };
+    <!-- Word Translation Practice Mode -->
+    <div id="wordTranslationMode" class="hidden">
+        <div class="difficulty-selector">
+            <button class="difficulty-btn active" onclick="setTranslationDifficulty('easy')">Easy</button>
+            <button class="difficulty-btn" onclick="setTranslationDifficulty('normal')">Normal</button>
+            <button class="difficulty-btn" onclick="setTranslationDifficulty('hard')">Hard</button>
+            <button class="difficulty-btn" onclick="setTranslationDifficulty('extreme')">Extreme</button>
+        </div>
+        <div class="word-display" id="translationWordDisplay">こんにちは</div>
+        <div class="word-info">
+            <div>Pronunciation: <span id="wordPronunciation">konnichiwa</span></div>
+        </div>
+        <button class="audio-btn" onclick="playTranslationWordSound()">🔊 Play Word</button>
+        <div class="input-area">
+            <input type="text" class="text-input" id="translationInput" placeholder="Type English meaning..." maxlength="50">
+        </div>
+        <button class="submit-btn" onclick="checkTranslation()">Check Answer</button>
+    </div>
 
-        // Game state
-        let currentMode = 'sound';
-        let currentHiragana = 'あ';
-        let currentRomaji = 'a';
-        let currentWord = 'こんにちは';
-        let currentWordData = wordData['こんにちは'];
-        let score = 0;
-        let total = 0;
-        let isDrawing = false;
-        let canvas, ctx;
-        let autoPlay = true;
-
-        // Initialize
-        window.onload = function() {
-            canvas = document.getElementById('drawingCanvas');
-            ctx = canvas.getContext('2d');
-            setupCanvas();
-            nextCharacter();
-        };
-
-        function setupCanvas() {
-            ctx.strokeStyle = '#e2e8f0';
-            ctx.lineWidth = 4;
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-
-            canvas.addEventListener('mousedown', startDrawing);
-            canvas.addEventListener('mousemove', draw);
-            canvas.addEventListener('mouseup', stopDrawing);
-            canvas.addEventListener('mouseout', stopDrawing);
-
-            // Touch events for mobile
-            canvas.addEventListener('touchstart', handleTouch);
-            canvas.addEventListener('touchmove', handleTouch);
-            canvas.addEventListener('touchend', stopDrawing);
-        }
-
-        function toggleAutoPlay() {
-            autoPlay = !autoPlay;
-            const toggle = document.getElementById('autoPlayToggle');
-            toggle.classList.toggle('active', autoPlay);
-        }
-
-        function setMode(mode) {
-            currentMode = mode;
-            
-            // Update button states
-            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Show/hide appropriate modes
-            document.getElementById('soundMode').classList.add('hidden');
-            document.getElementById('drawingMode').classList.add('hidden');
-            document.getElementById('wordSoundMode').classList.add('hidden');
-            document.getElementById('wordTranslationMode').classList.add('hidden');
-            
-            document.getElementById(mode + 'Mode').classList.remove('hidden');
-            
-            // Clear inputs and feedback
-            clearInputs();
-            hideFeedback();
-            
-            nextCharacter();
-        }
-
-        function getRandomCharacter() {
-            const characters = Object.keys(hiraganaData);
-            const randomIndex = Math.floor(Math.random() * characters.length);
-            return characters[randomIndex];
-        }
-
-        function getRandomWord() {
-            const words = Object.keys(wordData);
-            const randomIndex = Math.floor(Math.random() * words.length);
-            return words[randomIndex];
-        }
-
-        function nextCharacter() {
-            if (currentMode === 'sound' || currentMode === 'drawing') {
-                currentHiragana = getRandomCharacter();
-                currentRomaji = hiraganaData[currentHiragana];
-                
-                // Update displays
-                document.getElementById('hiraganaChar').textContent = currentHiragana;
-                document.getElementById('drawRomajiChar').textContent = currentRomaji;
-                
-                if (autoPlay && currentMode === 'sound') {
-                    setTimeout(() => playSound(), 500);
-                }
-            } else {
-                currentWord = getRandomWord();
-                currentWordData = wordData[currentWord];
-                
-                // Update displays
-                document.getElementById('wordDisplay').textContent = currentWord;
-                document.getElementById('translationWordDisplay').textContent = currentWord;
-                document.getElementById('wordPronunciation').textContent = currentWordData.romaji;
-                
-                if (autoPlay) {
-                    setTimeout(() => {
-                        if (currentMode === 'wordSound') playWordSound();
-                        else if (currentMode === 'wordTranslation') playTranslationWordSound();
-                    }, 500);
-                }
-            }
-            
-            clearInputs();
-            hideFeedback();
-        }
-
-        function clearInputs() {
-            document.getElementById('romajiInput').value = '';
-            document.getElementById('wordRomajiInput').value = '';
-            document.getElementById('translationInput').value = '';
-            clearCanvas();
-        }
-
-        function hideFeedback() {
-            document.getElementById('feedback').classList.add('hidden');
-        }
-
-        function showFeedback(message, isCorrect) {
-            const feedback = document.getElementById('feedback');
-            feedback.textContent = message;
-            feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
-            feedback.classList.remove('hidden');
-            
-            if (isCorrect) {
-                feedback.classList.add('bounce');
-                setTimeout(() => feedback.classList.remove('bounce'), 600);
-            }
-        }
-
-        function updateScore(isCorrect) {
-            total++;
-            if (isCorrect) score++;
-            
-            document.getElementById('score').textContent = score;
-            document.getElementById('total').textContent = total;
-            document.getElementById('percentage').textContent = Math.round((score / total) * 100);
-        }
-
-        function playSound() {
-            if ('speechSynthesis' in window) {
-                speechSynthesis.cancel();
-                
-                const utterance = new SpeechSynthesisUtterance(currentHiragana);
-                utterance.lang = 'ja-JP';
-                utterance.rate = 0.7;
-                utterance.pitch = 1.0;
-                utterance.volume = 1.0;
-                
-                setTimeout(() => {
-                    speechSynthesis.speak(utterance);
-                }, 100);
-            } else {
-                showFeedback('Text-to-speech not supported in this browser', false);
-            }
-        }
-
-        function playWordSound() {
-            if ('speechSynthesis' in window) {
-                speechSynthesis.cancel();
-                
-                const utterance = new SpeechSynthesisUtterance(currentWord);
-                utterance.lang = 'ja-JP';
-                utterance.rate = 0.6;
-                utterance.pitch = 1.0;
-                utterance.volume = 1.0;
-                
-                setTimeout(() => {
-                    speechSynthesis.speak(utterance);
-                }, 100);
-            } else {
-                showFeedback('Text-to-speech not supported in this browser', false);
-            }
-        }
-
-        function playTranslationWordSound() {
-            playWordSound();
-        }
-
-        function checkRomaji() {
-            const input = document.getElementById('romajiInput').value.toLowerCase().trim();
-            const isCorrect = input === currentRomaji;
-            
-            updateScore(isCorrect);
-            
-            if (isCorrect) {
-                showFeedback('Correct! Well done! 🎉', true);
-                setTimeout(() => nextCharacter(), 1500);
-            } else {
-                showFeedback(`Incorrect. The answer is: ${currentRomaji}`, false);
-            }
-        }
-
-        function checkWordRomaji() {
-            const input = document.getElementById('wordRomajiInput').value.toLowerCase().trim();
-            const isCorrect = input === currentWordData.romaji;
-            
-            updateScore(isCorrect);
-            
-            if (isCorrect) {
-                showFeedback(`Correct! "${currentWordData.english}" 🎉`, true);
-                setTimeout(() => nextCharacter(), 2000);
-            } else {
-                showFeedback(`Incorrect. The answer is: ${currentWordData.romaji} (${currentWordData.english})`, false);
-            }
-        }
-
-        function checkTranslation() {
-            const input = document.getElementById('translationInput').value.toLowerCase().trim();
-            const isCorrect = input === currentWordData.english;
-            
-            updateScore(isCorrect);
-            
-            if (isCorrect) {
-                showFeedback('Correct! Excellent! 🎉', true);
-                setTimeout(() => nextCharacter(), 1500);
-            } else {
-                showFeedback(`Incorrect. The answer is: ${currentWordData.english}`, false);
-            }
-        }
-
-        function checkDrawing() {
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const pixels = imageData.data;
-            let drawnPixels = 0;
-            
-            for (let i = 0; i < pixels.length; i += 4) {
-                if (pixels[i + 3] > 0) drawnPixels++;
-            }
-            
-            if (drawnPixels > 100) {
-                updateScore(true);
-                showFeedback(`Good attempt! The character is: ${currentHiragana} (${currentRomaji})`, true);
-                setTimeout(() => nextCharacter(), 2000);
-            } else {
-                showFeedback('Please draw something first!', false);
-            }
-        }
-
-        // Drawing functions
-        function startDrawing(e) {
-            isDrawing = true;
-            const rect = canvas.getBoundingClientRect();
-            ctx.beginPath();
-            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-        }
-
-        function draw(e) {
-            if (!isDrawing) return;
-            const rect = canvas.getBoundingClientRect();
-            ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-            ctx.stroke();
-        }
-
-        function stopDrawing() {
-            isDrawing = false;
-        }
-
-        function handleTouch(e) {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const mouseEvent = new MouseEvent(e.type === 'touchstart' ? 'mousedown' : 
-                                            e.type === 'touchmove' ? 'mousemove' : 'mouseup', {
-                clientX: touch.clientX,
-                clientY: touch.clientY
-            });
-            canvas.dispatchEvent(mouseEvent);
-        }
-
-        function clearCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-
-        // Keyboard shortcuts
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                if (currentMode === 'sound') checkRomaji();
-                else if (currentMode === 'drawing') checkDrawing();
-                else if (currentMode === 'wordSound') checkWordRomaji();
-                else if (currentMode === 'wordTranslation') checkTranslation();
-            }
-        });
-    </script>
-</body>
-</html>
+    <div id="feedback" class="feedback hidden"></div>
+    
+    <button class="control-btn" onclick="nextCharacter()" style="margin-top: 1rem;">Next →</button>
+</div>
+</div>
+<script src="./hiraganadata.js"></script>
+<script src="./script.js"></script>

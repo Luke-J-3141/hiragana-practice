@@ -292,8 +292,7 @@ class JapanesePracticeApp {
     
     // Audio functions
     playSound() {
-        const romaji = hiraganaData[this.currentCharacter];
-        this.speak(romaji, 'ja');
+        this.speak(this.currentCharacter, 'ja');
     }
     
     playWordSound() {

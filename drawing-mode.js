@@ -16,7 +16,7 @@ class DrawingMode {
         if (!this.canvas) return;
         
         this.ctx = this.canvas.getContext('2d');
-        this.ctx.strokeStyle = '#333';
+        this.ctx.strokeStyle = '#fff';
         this.ctx.lineWidth = 3;
         this.ctx.lineCap = 'round';
         this.ctx.lineJoin = 'round';

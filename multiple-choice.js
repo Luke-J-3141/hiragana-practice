@@ -1,13 +1,46 @@
-// Multiple Choice Practice Mode for Japanese Learning App
+// Multiple Choice Practice Mode for Japanese Learning App with Weighted Randomization
 
 // Variables for multiple choice mode
 let currentMultipleChoiceAnswer = '';
 let multipleChoiceOptions = [];
 let multipleChoiceScore = 0;
 let multipleChoiceTotalQuestions = 0;
+let multipleChoiceWeights = {}; // Track how many times each character has been shown
+
+// Initialize weights for multiple choice mode
+function initializeMultipleChoiceWeights() {
+    const characters = Object.keys(hiraganaData);
+    characters.forEach(char => {
+        multipleChoiceWeights[char] = 0;
+    });
+}
+
+// Get weighted random character for multiple choice
+function getWeightedRandomMultipleChoiceCharacter() {
+    const characters = Object.keys(hiraganaData);
+    
+    // Find the minimum weight (characters shown least)
+    const minWeight = Math.min(...Object.values(multipleChoiceWeights));
+    
+    // Get all characters with the minimum weight (prioritize least shown)
+    const leastShownChars = characters.filter(char => 
+        multipleChoiceWeights[char] === minWeight
+    );
+    
+    // If we have characters that haven't been shown as much, pick from those
+    if (leastShownChars.length > 0) {
+        return leastShownChars[Math.floor(Math.random() * leastShownChars.length)];
+    }
+    
+    // Fallback to regular random (shouldn't happen with proper initialization)
+    return characters[Math.floor(Math.random() * characters.length)];
+}
 
 // Add this function to your existing script.js or create a new file
 function initializeMultipleChoiceMode() {
+    // Initialize the weighting system
+    initializeMultipleChoiceWeights();
+    
     // Add the multiple choice mode HTML structure
     const practiceArea = document.querySelector('.practice-area');
     
@@ -145,18 +178,22 @@ function generateMultipleChoiceQuestion() {
     // Get all hiragana characters
     const allCharacters = Object.keys(hiraganaData);
     
-    // Select a random correct answer
-    const randomIndex = Math.floor(Math.random() * allCharacters.length);
-    currentMultipleChoiceAnswer = allCharacters[randomIndex];
+    // Select the correct answer using weighted randomization
+    currentMultipleChoiceAnswer = getWeightedRandomMultipleChoiceCharacter();
+    
+    // Increment the weight for this character
+    multipleChoiceWeights[currentMultipleChoiceAnswer]++;
     
     // Display the romaji
     document.getElementById('multipleChoiceRomaji').textContent = hiraganaData[currentMultipleChoiceAnswer];
     
-    // Generate 9 incorrect options
+    // Generate 9 incorrect options (avoid the correct answer)
     const incorrectOptions = [];
-    while (incorrectOptions.length < 9) {
-        const randomChar = allCharacters[Math.floor(Math.random() * allCharacters.length)];
-        if (randomChar !== currentMultipleChoiceAnswer && !incorrectOptions.includes(randomChar)) {
+    const availableIncorrectChars = allCharacters.filter(char => char !== currentMultipleChoiceAnswer);
+    
+    while (incorrectOptions.length < 14 && incorrectOptions.length < availableIncorrectChars.length) {
+        const randomChar = availableIncorrectChars[Math.floor(Math.random() * availableIncorrectChars.length)];
+        if (!incorrectOptions.includes(randomChar)) {
             incorrectOptions.push(randomChar);
         }
     }
@@ -223,6 +260,11 @@ function selectMultipleChoiceAnswer(selectedChar, buttonElement) {
         });
         feedbackDiv.textContent = `Incorrect. The correct answer is ${currentMultipleChoiceAnswer} (${hiraganaData[currentMultipleChoiceAnswer]}). You selected ${selectedChar} (${hiraganaData[selectedChar]}).`;
         feedbackDiv.className = 'multiple-choice-feedback incorrect';
+        
+        // Reduce weight for incorrect answers to show them more often
+        if (multipleChoiceWeights[currentMultipleChoiceAnswer] > 0) {
+            multipleChoiceWeights[currentMultipleChoiceAnswer]--;
+        }
     }
     
     // Update score display
@@ -241,6 +283,16 @@ function updateScoreDisplay() {
     document.getElementById('score').textContent = multipleChoiceScore;
     document.getElementById('total').textContent = multipleChoiceTotalQuestions;
     document.getElementById('percentage').textContent = percentage;
+}
+
+// Optional: Reset weights for multiple choice mode
+function resetMultipleChoiceWeights() {
+    initializeMultipleChoiceWeights();
+}
+
+// Optional: Get weight stats for debugging
+function getMultipleChoiceWeightStats() {
+    return { ...multipleChoiceWeights };
 }
 
 // Modify the existing setMode function to include multiple choice mode

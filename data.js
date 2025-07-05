@@ -1,48 +1,47 @@
-// Enhanced hiragana data with accented characters
+// Enhanced hiragana data with romaji and meaning structure
 const hiraganaData = {
     //  a            i           u            e            o
-    'あ': 'a',   'い': 'i',   'う': 'u',   'え': 'e',   'お': 'o',
+    'あ': { romaji: 'a', meaning: '' },   'い': { romaji: 'i', meaning: '' },   'う': { romaji: 'u', meaning: '' },   'え': { romaji: 'e', meaning: '' },   'お': { romaji: 'o', meaning: '' },
     //  k-series
-    'か': 'ka',  'き': 'ki',  'く': 'ku',  'け': 'ke',  'こ': 'ko',
-    'が': 'ga',  'ぎ': 'gi',  'ぐ': 'gu',  'げ': 'ge',  'ご': 'go',
+    'か': { romaji: 'ka', meaning: '' },  'き': { romaji: 'ki', meaning: '' },  'く': { romaji: 'ku', meaning: '' },  'け': { romaji: 'ke', meaning: '' },  'こ': { romaji: 'ko', meaning: '' },
+    'が': { romaji: 'ga', meaning: '' },  'ぎ': { romaji: 'gi', meaning: '' },  'ぐ': { romaji: 'gu', meaning: '' },  'げ': { romaji: 'ge', meaning: '' },  'ご': { romaji: 'go', meaning: '' },
     //  s-series
-    'さ': 'sa',  'し': 'shi', 'す': 'su',  'せ': 'se',  'そ': 'so',
-    'ざ': 'za',  'じ': 'ji',  'ず': 'zu',  'ぜ': 'ze',  'ぞ': 'zo',
+    'さ': { romaji: 'sa', meaning: '' },  'し': { romaji: 'shi', meaning: '' }, 'す': { romaji: 'su', meaning: '' },  'せ': { romaji: 'se', meaning: '' },  'そ': { romaji: 'so', meaning: '' },
+    'ざ': { romaji: 'za', meaning: '' },  'じ': { romaji: 'ji', meaning: '' },  'ず': { romaji: 'zu', meaning: '' },  'ぜ': { romaji: 'ze', meaning: '' },  'ぞ': { romaji: 'zo', meaning: '' },
     //  t-series
-    'た': 'ta',  'ち': 'chi', 'つ': 'tsu', 'て': 'te',  'と': 'to',
-    'だ': 'da',  'ぢ': 'ji',  'づ': 'zu',  'で': 'de',  'ど': 'do',
+    'た': { romaji: 'ta', meaning: '' },  'ち': { romaji: 'chi', meaning: '' }, 'つ': { romaji: 'tsu', meaning: '' }, 'て': { romaji: 'te', meaning: '' },  'と': { romaji: 'to', meaning: '' },
+    'だ': { romaji: 'da', meaning: '' },  'ぢ': { romaji: 'ji', meaning: '' },  'づ': { romaji: 'zu', meaning: '' },  'で': { romaji: 'de', meaning: '' },  'ど': { romaji: 'do', meaning: '' },
     //  n-series
-    'な': 'na',  'に': 'ni',  'ぬ': 'nu',  'ね': 'ne',  'の': 'no',
+    'な': { romaji: 'na', meaning: '' },  'に': { romaji: 'ni', meaning: '' },  'ぬ': { romaji: 'nu', meaning: '' },  'ね': { romaji: 'ne', meaning: '' },  'の': { romaji: 'no', meaning: '' },
     //  h-series
-    'は': 'ha',  'ひ': 'hi',  'ふ': 'fu',  'へ': 'he',  'ほ': 'ho',
-    'ば': 'ba',  'び': 'bi',  'ぶ': 'bu',  'べ': 'be',  'ぼ': 'bo',
-    'ぱ': 'pa',  'ぴ': 'pi',  'ぷ': 'pu',  'ぺ': 'pe',  'ぽ': 'po',
+    'は': { romaji: 'ha', meaning: '' },  'ひ': { romaji: 'hi', meaning: '' },  'ふ': { romaji: 'fu', meaning: '' },  'へ': { romaji: 'he', meaning: '' },  'ほ': { romaji: 'ho', meaning: '' },
+    'ば': { romaji: 'ba', meaning: '' },  'び': { romaji: 'bi', meaning: '' },  'ぶ': { romaji: 'bu', meaning: '' },  'べ': { romaji: 'be', meaning: '' },  'ぼ': { romaji: 'bo', meaning: '' },
+    'ぱ': { romaji: 'pa', meaning: '' },  'ぴ': { romaji: 'pi', meaning: '' },  'ぷ': { romaji: 'pu', meaning: '' },  'ぺ': { romaji: 'pe', meaning: '' },  'ぽ': { romaji: 'po', meaning: '' },
     //  m-series
-    'ま': 'ma',  'み': 'mi',  'む': 'mu',  'め': 'me',  'も': 'mo',
+    'ま': { romaji: 'ma', meaning: '' },  'み': { romaji: 'mi', meaning: '' },  'む': { romaji: 'mu', meaning: '' },  'め': { romaji: 'me', meaning: '' },  'も': { romaji: 'mo', meaning: '' },
     //  y-series
-    'や': 'ya',               'ゆ': 'yu',               'よ': 'yo',
+    'や': { romaji: 'ya', meaning: '' },                                         'ゆ': { romaji: 'yu', meaning: '' },                                         'よ': { romaji: 'yo', meaning: '' },
     //  r-series
-    'ら': 'ra',  'り': 'ri',  'る': 'ru',  'れ': 're',  'ろ': 'ro',
-    'わ': 'wa',                            'を': 'wo',
-    'ん': 'n',
+    'ら': { romaji: 'ra', meaning: '' },  'り': { romaji: 'ri', meaning: '' },  'る': { romaji: 'ru', meaning: '' },  'れ': { romaji: 're', meaning: '' },  'ろ': { romaji: 'ro', meaning: '' },
+    'わ': { romaji: 'wa', meaning: '' },                                                                                                                   'を': { romaji: 'wo', meaning: '' },
+    'ん': { romaji: 'n', meaning: '' },
 
     // Yoon (contracted sounds)
-    'きゃ': 'kya',          'きゅ': 'kyu',             'きょ': 'kyo',
-    'しゃ': 'sha',          'しゅ': 'shu',             'しょ': 'sho',
-    'ちゃ': 'cha',          'ちゅ': 'chu',             'ちょ': 'cho',
-    'にゃ': 'nya',          'にゅ': 'nyu',             'にょ': 'nyo',
-    'ひゃ': 'hya',          'ひゅ': 'hyu',             'ひょ': 'hyo',
-    'みゃ': 'mya',          'みゅ': 'myu',             'みょ': 'myo',
-    'りゃ': 'rya',          'りゅ': 'ryu',             'りょ': 'ryo',
-    'ぎゃ': 'gya',          'ぎゅ': 'gyu',             'ぎょ': 'gyo',
-    'じゃ': 'ja',           'じゅ': 'ju',              'じょ': 'jo',
-    'びゃ': 'bya',          'びゅ': 'byu',             'びょ': 'byo',
-    'ぴゃ': 'pya',          'ぴゅ': 'pyu',             'ぴょ': 'pyo'
+    'きゃ': { romaji: 'kya', meaning: '' },          'きゅ': { romaji: 'kyu', meaning: '' },             'きょ': { romaji: 'kyo', meaning: '' },
+    'しゃ': { romaji: 'sha', meaning: '' },          'しゅ': { romaji: 'shu', meaning: '' },             'しょ': { romaji: 'sho', meaning: '' },
+    'ちゃ': { romaji: 'cha', meaning: '' },          'ちゅ': { romaji: 'chu', meaning: '' },             'ちょ': { romaji: 'cho', meaning: '' },
+    'にゃ': { romaji: 'nya', meaning: '' },          'にゅ': { romaji: 'nyu', meaning: '' },             'にょ': { romaji: 'nyo', meaning: '' },
+    'ひゃ': { romaji: 'hya', meaning: '' },          'ひゅ': { romaji: 'hyu', meaning: '' },             'ひょ': { romaji: 'hyo', meaning: '' },
+    'みゃ': { romaji: 'mya', meaning: '' },          'みゅ': { romaji: 'myu', meaning: '' },             'みょ': { romaji: 'myo', meaning: '' },
+    'りゃ': { romaji: 'rya', meaning: '' },          'りゅ': { romaji: 'ryu', meaning: '' },             'りょ': { romaji: 'ryo', meaning: '' },
+    'ぎゃ': { romaji: 'gya', meaning: '' },          'ぎゅ': { romaji: 'gyu', meaning: '' },             'ぎょ': { romaji: 'gyo', meaning: '' },
+    'じゃ': { romaji: 'ja', meaning: '' },           'じゅ': { romaji: 'ju', meaning: '' },              'じょ': { romaji: 'jo', meaning: '' },
+    'びゃ': { romaji: 'bya', meaning: '' },          'びゅ': { romaji: 'byu', meaning: '' },             'びょ': { romaji: 'byo', meaning: '' },
+    'ぴゃ': { romaji: 'pya', meaning: '' },          'ぴゅ': { romaji: 'pyu', meaning: '' },             'ぴょ': { romaji: 'pyo', meaning: '' }
 };
 
-
 // Difficulty-based word data
-const wordData = {
+const hiraganaWordData = {
     easy: {
         'あめ': { romaji: 'ame', english: 'rain' },
         'いぬ': { romaji: 'inu', english: 'dog' },
@@ -183,7 +182,425 @@ const wordData = {
         'もんだい': { romaji: 'mondai', english: 'problem' }
     }
 };
+// Enhanced katakana data with romaji and meaning structure
+const katakanaData = {
+    //  a            i           u            e            o
+    'ア': { romaji: 'a', meaning: '' },   'イ': { romaji: 'i', meaning: '' },   'ウ': { romaji: 'u', meaning: '' },   'エ': { romaji: 'e', meaning: '' },   'オ': { romaji: 'o', meaning: '' },
+    //  k-series
+    'カ': { romaji: 'ka', meaning: '' },  'キ': { romaji: 'ki', meaning: '' },  'ク': { romaji: 'ku', meaning: '' },  'ケ': { romaji: 'ke', meaning: '' },  'コ': { romaji: 'ko', meaning: '' },
+    'ガ': { romaji: 'ga', meaning: '' },  'ギ': { romaji: 'gi', meaning: '' },  'グ': { romaji: 'gu', meaning: '' },  'ゲ': { romaji: 'ge', meaning: '' },  'ゴ': { romaji: 'go', meaning: '' },
+    //  s-series
+    'サ': { romaji: 'sa', meaning: '' },  'シ': { romaji: 'shi', meaning: '' }, 'ス': { romaji: 'su', meaning: '' },  'セ': { romaji: 'se', meaning: '' },  'ソ': { romaji: 'so', meaning: '' },
+    'ザ': { romaji: 'za', meaning: '' },  'ジ': { romaji: 'ji', meaning: '' },  'ズ': { romaji: 'zu', meaning: '' },  'ゼ': { romaji: 'ze', meaning: '' },  'ゾ': { romaji: 'zo', meaning: '' },
+    //  t-series
+    'タ': { romaji: 'ta', meaning: '' },  'チ': { romaji: 'chi', meaning: '' }, 'ツ': { romaji: 'tsu', meaning: '' }, 'テ': { romaji: 'te', meaning: '' },  'ト': { romaji: 'to', meaning: '' },
+    'ダ': { romaji: 'da', meaning: '' },  'ヂ': { romaji: 'ji', meaning: '' },  'ヅ': { romaji: 'zu', meaning: '' },  'デ': { romaji: 'de', meaning: '' },  'ド': { romaji: 'do', meaning: '' },
+    //  n-series
+    'ナ': { romaji: 'na', meaning: '' },  'ニ': { romaji: 'ni', meaning: '' },  'ヌ': { romaji: 'nu', meaning: '' },  'ネ': { romaji: 'ne', meaning: '' },  'ノ': { romaji: 'no', meaning: '' },
+    //  h-series
+    'ハ': { romaji: 'ha', meaning: '' },  'ヒ': { romaji: 'hi', meaning: '' },  'フ': { romaji: 'fu', meaning: '' },  'ヘ': { romaji: 'he', meaning: '' },  'ホ': { romaji: 'ho', meaning: '' },
+    'バ': { romaji: 'ba', meaning: '' },  'ビ': { romaji: 'bi', meaning: '' },  'ブ': { romaji: 'bu', meaning: '' },  'ベ': { romaji: 'be', meaning: '' },  'ボ': { romaji: 'bo', meaning: '' },
+    'パ': { romaji: 'pa', meaning: '' },  'ピ': { romaji: 'pi', meaning: '' },  'プ': { romaji: 'pu', meaning: '' },  'ペ': { romaji: 'pe', meaning: '' },  'ポ': { romaji: 'po', meaning: '' },
+    //  m-series
+    'マ': { romaji: 'ma', meaning: '' },  'ミ': { romaji: 'mi', meaning: '' },  'ム': { romaji: 'mu', meaning: '' },  'メ': { romaji: 'me', meaning: '' },  'モ': { romaji: 'mo', meaning: '' },
+    //  y-series
+    'ヤ': { romaji: 'ya', meaning: '' },                                         'ユ': { romaji: 'yu', meaning: '' },                                         'ヨ': { romaji: 'yo', meaning: '' },
+    //  r-series
+    'ラ': { romaji: 'ra', meaning: '' },  'リ': { romaji: 'ri', meaning: '' },  'ル': { romaji: 'ru', meaning: '' },  'レ': { romaji: 're', meaning: '' },  'ロ': { romaji: 'ro', meaning: '' },
+    'ワ': { romaji: 'wa', meaning: '' },  'ヰ': { romaji: 'wi', meaning: '' },  'ヱ': { romaji: 'we', meaning: '' },  'ヲ': { romaji: 'wo', meaning: '' },
+    'ン': { romaji: 'n', meaning: '' },
 
+    // Yoon (contracted sounds)
+    'キャ': { romaji: 'kya', meaning: '' },          'キュ': { romaji: 'kyu', meaning: '' },             'キョ': { romaji: 'kyo', meaning: '' },
+    'シャ': { romaji: 'sha', meaning: '' },          'シュ': { romaji: 'shu', meaning: '' },             'ショ': { romaji: 'sho', meaning: '' },
+    'チャ': { romaji: 'cha', meaning: '' },          'チュ': { romaji: 'chu', meaning: '' },             'チョ': { romaji: 'cho', meaning: '' },
+    'ニャ': { romaji: 'nya', meaning: '' },          'ニュ': { romaji: 'nyu', meaning: '' },             'ニョ': { romaji: 'nyo', meaning: '' },
+    'ヒャ': { romaji: 'hya', meaning: '' },          'ヒュ': { romaji: 'hyu', meaning: '' },             'ヒョ': { romaji: 'hyo', meaning: '' },
+    'ミャ': { romaji: 'mya', meaning: '' },          'ミュ': { romaji: 'myu', meaning: '' },             'ミョ': { romaji: 'myo', meaning: '' },
+    'リャ': { romaji: 'rya', meaning: '' },          'リュ': { romaji: 'ryu', meaning: '' },             'リョ': { romaji: 'ryo', meaning: '' },
+    'ギャ': { romaji: 'gya', meaning: '' },          'ギュ': { romaji: 'gyu', meaning: '' },             'ギョ': { romaji: 'gyo', meaning: '' },
+    'ジャ': { romaji: 'ja', meaning: '' },           'ジュ': { romaji: 'ju', meaning: '' },              'ジョ': { romaji: 'jo', meaning: '' },
+    'ビャ': { romaji: 'bya', meaning: '' },          'ビュ': { romaji: 'byu', meaning: '' },             'ビョ': { romaji: 'byo', meaning: '' },
+    'ピャ': { romaji: 'pya', meaning: '' },          'ピュ': { romaji: 'pyu', meaning: '' },             'ピョ': { romaji: 'pyo', meaning: '' },
+    
+    // Extended katakana for foreign words
+    'ヴ': { romaji: 'vu', meaning: '' },
+    'ティ': { romaji: 'ti', meaning: '' },           'ディ': { romaji: 'di', meaning: '' },              'トゥ': { romaji: 'tu', meaning: '' },
+    'ドゥ': { romaji: 'du', meaning: '' },           'ファ': { romaji: 'fa', meaning: '' },              'フィ': { romaji: 'fi', meaning: '' },
+    'フェ': { romaji: 'fe', meaning: '' },           'フォ': { romaji: 'fo', meaning: '' },              'ウィ': { romaji: 'wi', meaning: '' },
+    'ウェ': { romaji: 'we', meaning: '' },           'ウォ': { romaji: 'wo', meaning: '' },              'ツァ': { romaji: 'tsa', meaning: '' },
+    'ツィ': { romaji: 'tsi', meaning: '' },          'ツェ': { romaji: 'tse', meaning: '' },             'ツォ': { romaji: 'tso', meaning: '' },
+    'チェ': { romaji: 'che', meaning: '' },          'シェ': { romaji: 'she', meaning: '' },             'ジェ': { romaji: 'je', meaning: '' },
+    'イェ': { romaji: 'ye', meaning: '' }
+};
+
+// Katakana word data (mainly foreign loanwords)
+const katakanaWordData = {
+    easy: {
+        'アメ': { romaji: 'ame', english: 'candy' },
+        'イス': { romaji: 'isu', english: 'chair' },
+        'ウシ': { romaji: 'ushi', english: 'cow' },
+        'エビ': { romaji: 'ebi', english: 'shrimp' },
+        'オニ': { romaji: 'oni', english: 'demon' },
+        'カメ': { romaji: 'kame', english: 'turtle' },
+        'キツネ': { romaji: 'kitsune', english: 'fox' },
+        'クマ': { romaji: 'kuma', english: 'bear' },
+        'ケーキ': { romaji: 'keeki', english: 'cake' },
+        'コーヒー': { romaji: 'koohii', english: 'coffee' },
+        'サル': { romaji: 'saru', english: 'monkey' },
+        'タコ': { romaji: 'tako', english: 'octopus' },
+        'ナイフ': { romaji: 'naifu', english: 'knife' },
+        'ハム': { romaji: 'hamu', english: 'ham' },
+        'マウス': { romaji: 'mausu', english: 'mouse' },
+        'ヤギ': { romaji: 'yagi', english: 'goat' },
+        'ライオン': { romaji: 'raion', english: 'lion' },
+        'ワイン': { romaji: 'wain', english: 'wine' },
+        // Common foreign words
+        'パン': { romaji: 'pan', english: 'bread' },
+        'ペン': { romaji: 'pen', english: 'pen' },
+        'ノート': { romaji: 'nooto', english: 'notebook' },
+        'テスト': { romaji: 'tesuto', english: 'test' },
+        'ドア': { romaji: 'doa', english: 'door' },
+        'ベッド': { romaji: 'beddo', english: 'bed' },
+        'テーブル': { romaji: 'teeburu', english: 'table' },
+        'バス': { romaji: 'basu', english: 'bus' },
+        'タクシー': { romaji: 'takushii', english: 'taxi' },
+        'ホテル': { romaji: 'hoteru', english: 'hotel' },
+        'レストラン': { romaji: 'resutoran', english: 'restaurant' },
+        'カフェ': { romaji: 'kafe', english: 'cafe' },
+        'スーパー': { romaji: 'suupaa', english: 'supermarket' },
+        'デパート': { romaji: 'depaato', english: 'department store' },
+        'アイス': { romaji: 'aisu', english: 'ice cream' },
+        'ジュース': { romaji: 'juusu', english: 'juice' },
+        'ミルク': { romaji: 'miruku', english: 'milk' },
+        'バター': { romaji: 'bataa', english: 'butter' },
+        'チーズ': { romaji: 'chiizu', english: 'cheese' },
+        'サラダ': { romaji: 'sarada', english: 'salad' }
+    },
+    normal: {
+        'アメリカ': { romaji: 'amerika', english: 'America' },
+        'イギリス': { romaji: 'igirisu', english: 'England' },
+        'ドイツ': { romaji: 'doitsu', english: 'Germany' },
+        'フランス': { romaji: 'furansu', english: 'France' },
+        'イタリア': { romaji: 'itaria', english: 'Italy' },
+        'ロシア': { romaji: 'roshia', english: 'Russia' },
+        'カナダ': { romaji: 'kanada', english: 'Canada' },
+        'オーストラリア': { romaji: 'oosutoraria', english: 'Australia' },
+        'コンピューター': { romaji: 'konpyuutaa', english: 'computer' },
+        'インターネット': { romaji: 'intaanetto', english: 'internet' },
+        'スマートフォン': { romaji: 'sumaatofon', english: 'smartphone' },
+        'テレビ': { romaji: 'terebi', english: 'television' },
+        'ラジオ': { romaji: 'rajio', english: 'radio' },
+        'カメラ': { romaji: 'kamera', english: 'camera' },
+        'エレベーター': { romaji: 'erebeetaa', english: 'elevator' },
+        'エスカレーター': { romaji: 'esukareetaa', english: 'escalator' },
+        'プレゼント': { romaji: 'purezento', english: 'present' },
+        'パーティー': { romaji: 'paatii', english: 'party' },
+        'ピクニック': { romaji: 'pikunikku', english: 'picnic' },
+        'コンサート': { romaji: 'konsaato', english: 'concert' },
+        'スポーツ': { romaji: 'supootsu', english: 'sports' },
+        'サッカー': { romaji: 'sakkaa', english: 'soccer' },
+        'バスケットボール': { romaji: 'basukettoboru', english: 'basketball' },
+        'テニス': { romaji: 'tenisu', english: 'tennis' },
+        'ゴルフ': { romaji: 'gorufu', english: 'golf' },
+        'スキー': { romaji: 'sukii', english: 'skiing' },
+        'ダンス': { romaji: 'dansu', english: 'dance' },
+        'ミュージック': { romaji: 'myuujikku', english: 'music' },
+        'クラシック': { romaji: 'kurashikku', english: 'classical' },
+        'ジャズ': { romaji: 'jazu', english: 'jazz' },
+        'ロック': { romaji: 'rokku', english: 'rock' },
+        'ポップ': { romaji: 'poppu', english: 'pop' },
+        'ファッション': { romaji: 'fasshon', english: 'fashion' },
+        'ドレス': { romaji: 'doresu', english: 'dress' },
+        'スーツ': { romaji: 'suutsu', english: 'suit' },
+        'ジーンズ': { romaji: 'jiinzu', english: 'jeans' },
+        'セーター': { romaji: 'seetaa', english: 'sweater' },
+        'ジャケット': { romaji: 'jaketto', english: 'jacket' },
+        'スニーカー': { romaji: 'suniikaa', english: 'sneakers' },
+        'ブーツ': { romaji: 'buutsu', english: 'boots' }
+    },
+    hard: {
+        'アルバイト': { romaji: 'arubaito', english: 'part-time job' },
+        'インフルエンザ': { romaji: 'infuruenza', english: 'influenza' },
+        'エネルギー': { romaji: 'enerugii', english: 'energy' },
+        'オーケストラ': { romaji: 'ookesutora', english: 'orchestra' },
+        'カリキュラム': { romaji: 'karikyuramu', english: 'curriculum' },
+        'キャンペーン': { romaji: 'kyanpeen', english: 'campaign' },
+        'クリスマス': { romaji: 'kurisumasu', english: 'Christmas' },
+        'グローバル': { romaji: 'guroobaru', english: 'global' },
+        'ケーブル': { romaji: 'keeburu', english: 'cable' },
+        'コミュニケーション': { romaji: 'komyunikeeshon', english: 'communication' },
+        'サンドイッチ': { romaji: 'sandoitchi', english: 'sandwich' },
+        'シミュレーション': { romaji: 'shimyureeshon', english: 'simulation' },
+        'スケジュール': { romaji: 'sukejuuru', english: 'schedule' },
+        'ストレス': { romaji: 'sutoresu', english: 'stress' },
+        'セキュリティ': { romaji: 'sekyuriti', english: 'security' },
+        'ソフトウェア': { romaji: 'sofutowea', english: 'software' },
+        'ターミナル': { romaji: 'taaminaru', english: 'terminal' },
+        'チャレンジ': { romaji: 'charenji', english: 'challenge' },
+        'データベース': { romaji: 'deetabeesu', english: 'database' },
+        'ナビゲーション': { romaji: 'nabigeshon', english: 'navigation' },
+        'ハンバーガー': { romaji: 'hanbaagaa', english: 'hamburger' },
+        'ビジネス': { romaji: 'bijinesu', english: 'business' },
+        'プロジェクト': { romaji: 'purojekuto', english: 'project' },
+        'プログラム': { romaji: 'puroguramu', english: 'program' },
+        'ヘリコプター': { romaji: 'herikoputaa', english: 'helicopter' },
+        'ボランティア': { romaji: 'borantia', english: 'volunteer' },
+        'マネージメント': { romaji: 'manējimento', english: 'management' },
+        'ミーティング': { romaji: 'miitingu', english: 'meeting' },
+        'メッセージ': { romaji: 'messēji', english: 'message' },
+        'モニター': { romaji: 'monitaa', english: 'monitor' },
+        'ユーザー': { romaji: 'yuuzaa', english: 'user' },
+        'ラウンジ': { romaji: 'raunji', english: 'lounge' },
+        'リサーチ': { romaji: 'risaachi', english: 'research' },
+        'ルーティン': { romaji: 'ruutin', english: 'routine' },
+        'レストラン': { romaji: 'resutoran', english: 'restaurant' },
+        'ロビー': { romaji: 'robii', english: 'lobby' },
+        'ワークショップ': { romaji: 'waakushoppu', english: 'workshop' }
+    }
+};
+
+// Enhanced kanji data with readings and meanings
+// Kanji data with romaji pronunciation and meanings
+const kanjiData = {
+    // Basic numbers
+    '一': { romaji: 'ichi', meaning: 'one' },
+    '二': { romaji: 'ni', meaning: 'two' },
+    '三': { romaji: 'san', meaning: 'three' },
+    '四': { romaji: 'shi', meaning: 'four' },
+    '五': { romaji: 'go', meaning: 'five' },
+    '六': { romaji: 'roku', meaning: 'six' },
+    '七': { romaji: 'shichi', meaning: 'seven' },
+    '八': { romaji: 'hachi', meaning: 'eight' },
+    '九': { romaji: 'kyuu', meaning: 'nine' },
+    '十': { romaji: 'juu', meaning: 'ten' },
+    '百': { romaji: 'hyaku', meaning: 'hundred' },
+    '千': { romaji: 'sen', meaning: 'thousand' },
+    '万': { romaji: 'man', meaning: 'ten thousand' },
+    
+    // Time and calendar
+    '日': { romaji: 'hi', meaning: 'day/sun' },
+    '月': { romaji: 'tsuki', meaning: 'month/moon' },
+    '年': { romaji: 'toshi', meaning: 'year' },
+    '時': { romaji: 'toki', meaning: 'time' },
+    '週': { romaji: 'shuu', meaning: 'week' },
+    '今': { romaji: 'ima', meaning: 'now' },
+    '前': { romaji: 'mae', meaning: 'before' },
+    '後': { romaji: 'ato', meaning: 'after' },
+    '毎': { romaji: 'mai', meaning: 'every' },
+    
+    // People and family
+    '人': { romaji: 'hito', meaning: 'person' },
+    '子': { romaji: 'ko', meaning: 'child' },
+    '女': { romaji: 'onna', meaning: 'woman' },
+    '男': { romaji: 'otoko', meaning: 'man' },
+    '父': { romaji: 'chichi', meaning: 'father' },
+    '母': { romaji: 'haha', meaning: 'mother' },
+    '兄': { romaji: 'ani', meaning: 'older brother' },
+    '弟': { romaji: 'otouto', meaning: 'younger brother' },
+    '姉': { romaji: 'ane', meaning: 'older sister' },
+    '妹': { romaji: 'imouto', meaning: 'younger sister' },
+    '友': { romaji: 'tomo', meaning: 'friend' },
+    '先': { romaji: 'saki', meaning: 'ahead/prior' },
+    '生': { romaji: 'sei', meaning: 'life/birth' },
+    
+    // Body parts
+    '手': { romaji: 'te', meaning: 'hand' },
+    '足': { romaji: 'ashi', meaning: 'foot/leg' },
+    '目': { romaji: 'me', meaning: 'eye' },
+    '耳': { romaji: 'mimi', meaning: 'ear' },
+    '口': { romaji: 'kuchi', meaning: 'mouth' },
+    '鼻': { romaji: 'hana', meaning: 'nose' },
+    '頭': { romaji: 'atama', meaning: 'head' },
+    '心': { romaji: 'kokoro', meaning: 'heart/mind' },
+    '体': { romaji: 'karada', meaning: 'body' },
+    
+    // Nature
+    '山': { romaji: 'yama', meaning: 'mountain' },
+    '川': { romaji: 'kawa', meaning: 'river' },
+    '海': { romaji: 'umi', meaning: 'sea' },
+    '空': { romaji: 'sora', meaning: 'sky' },
+    '雲': { romaji: 'kumo', meaning: 'cloud' },
+    '雨': { romaji: 'ame', meaning: 'rain' },
+    '雪': { romaji: 'yuki', meaning: 'snow' },
+    '風': { romaji: 'kaze', meaning: 'wind' },
+    '火': { romaji: 'hi', meaning: 'fire' },
+    '水': { romaji: 'mizu', meaning: 'water' },
+    '土': { romaji: 'tsuchi', meaning: 'earth/soil' },
+    '木': { romaji: 'ki', meaning: 'tree/wood' },
+    '花': { romaji: 'hana', meaning: 'flower' },
+    '草': { romaji: 'kusa', meaning: 'grass' },
+    '石': { romaji: 'ishi', meaning: 'stone' },
+    
+    // Animals
+    '犬': { romaji: 'inu', meaning: 'dog' },
+    '猫': { romaji: 'neko', meaning: 'cat' },
+    '鳥': { romaji: 'tori', meaning: 'bird' },
+    '魚': { romaji: 'sakana', meaning: 'fish' },
+    '馬': { romaji: 'uma', meaning: 'horse' },
+    '牛': { romaji: 'ushi', meaning: 'cow' },
+    '虫': { romaji: 'mushi', meaning: 'insect' },
+    
+    // Places and buildings
+    '家': { romaji: 'ie', meaning: 'house' },
+    '国': { romaji: 'kuni', meaning: 'country' },
+    '町': { romaji: 'machi', meaning: 'town' },
+    '村': { romaji: 'mura', meaning: 'village' },
+    '市': { romaji: 'shi', meaning: 'city' },
+    '学': { romaji: 'gaku', meaning: 'learn' },
+    '校': { romaji: 'kou', meaning: 'school' },
+    '店': { romaji: 'mise', meaning: 'store' },
+    '駅': { romaji: 'eki', meaning: 'station' },
+    '病': { romaji: 'byou', meaning: 'illness' },
+    '院': { romaji: 'in', meaning: 'institution' },
+    '車': { romaji: 'kuruma', meaning: 'car' },
+    '道': { romaji: 'michi', meaning: 'road/way' },
+    '門': { romaji: 'mon', meaning: 'gate' },
+    '橋': { romaji: 'hashi', meaning: 'bridge' },
+    
+    // Actions and verbs
+    '行': { romaji: 'iku', meaning: 'go' },
+    '来': { romaji: 'kuru', meaning: 'come' },
+    '帰': { romaji: 'kaeru', meaning: 'return' },
+    '見': { romaji: 'miru', meaning: 'see' },
+    '聞': { romaji: 'kiku', meaning: 'hear' },
+    '読': { romaji: 'yomu', meaning: 'read' },
+    '書': { romaji: 'kaku', meaning: 'write' },
+    '話': { romaji: 'hanasu', meaning: 'speak' },
+    '食': { romaji: 'taberu', meaning: 'eat' },
+    '飲': { romaji: 'nomu', meaning: 'drink' },
+    '買': { romaji: 'kau', meaning: 'buy' },
+    '売': { romaji: 'uru', meaning: 'sell' },
+    '作': { romaji: 'tsukuru', meaning: 'make' },
+    '立': { romaji: 'tatsu', meaning: 'stand' },
+    '座': { romaji: 'suwaru', meaning: 'sit' },
+    '走': { romaji: 'hashiru', meaning: 'run' },
+    '歩': { romaji: 'aruku', meaning: 'walk' },
+    '止': { romaji: 'tomaru', meaning: 'stop' },
+    '休': { romaji: 'yasumu', meaning: 'rest' },
+    '働': { romaji: 'hataraku', meaning: 'work' },
+    '勉': { romaji: 'ben', meaning: 'diligence' },
+    '強': { romaji: 'tsuyoi', meaning: 'strong' },
+    '教': { romaji: 'oshieru', meaning: 'teach' },
+    '習': { romaji: 'narau', meaning: 'learn' },
+    '思': { romaji: 'omou', meaning: 'think' },
+    '考': { romaji: 'kangaeru', meaning: 'consider' },
+    '知': { romaji: 'shiru', meaning: 'know' },
+    '分': { romaji: 'wakaru', meaning: 'divide/understand' },
+    '出': { romaji: 'deru', meaning: 'exit' },
+    '入': { romaji: 'hairu', meaning: 'enter' },
+    '上': { romaji: 'ue', meaning: 'above' },
+    '下': { romaji: 'shita', meaning: 'below' },
+    '中': { romaji: 'naka', meaning: 'inside' },
+    '外': { romaji: 'soto', meaning: 'outside' },
+    '右': { romaji: 'migi', meaning: 'right' },
+    '左': { romaji: 'hidari', meaning: 'left' },
+    '北': { romaji: 'kita', meaning: 'north' },
+    '南': { romaji: 'minami', meaning: 'south' },
+    '東': { romaji: 'higashi', meaning: 'east' },
+    '西': { romaji: 'nishi', meaning: 'west' },
+    
+    // Adjectives and descriptions
+    '大': { romaji: 'ookii', meaning: 'big' },
+    '小': { romaji: 'chiisai', meaning: 'small' },
+    '高': { romaji: 'takai', meaning: 'high/tall' },
+    '低': { romaji: 'hikui', meaning: 'low' },
+    '長': { romaji: 'nagai', meaning: 'long' },
+    '短': { romaji: 'mijikai', meaning: 'short' },
+    '新': { romaji: 'atarashii', meaning: 'new' },
+    '古': { romaji: 'furui', meaning: 'old' },
+    '若': { romaji: 'wakai', meaning: 'young' },
+    '多': { romaji: 'ooi', meaning: 'many' },
+    '少': { romaji: 'sukunai', meaning: 'few' },
+    '早': { romaji: 'hayai', meaning: 'early' },
+    '遅': { romaji: 'osoi', meaning: 'late' },
+    '近': { romaji: 'chikai', meaning: 'near' },
+    '遠': { romaji: 'tooi', meaning: 'far' },
+    '明': { romaji: 'akarui', meaning: 'bright' },
+    '暗': { romaji: 'kurai', meaning: 'dark' },
+    '白': { romaji: 'shiro', meaning: 'white' },
+    '黒': { romaji: 'kuro', meaning: 'black' },
+    '赤': { romaji: 'aka', meaning: 'red' },
+    '青': { romaji: 'ao', meaning: 'blue' },
+    '黄': { romaji: 'ki', meaning: 'yellow' },
+    '緑': { romaji: 'midori', meaning: 'green' },
+    
+    // Objects and things
+    '本': { romaji: 'hon', meaning: 'book' },
+    '紙': { romaji: 'kami', meaning: 'paper' },
+    '字': { romaji: 'ji', meaning: 'character' },
+    '文': { romaji: 'bun', meaning: 'sentence' },
+    '名': { romaji: 'namae', meaning: 'name' },
+    '音': { romaji: 'oto', meaning: 'sound' },
+    '声': { romaji: 'koe', meaning: 'voice' },
+    '言': { romaji: 'iu', meaning: 'say' },
+    '語': { romaji: 'go', meaning: 'language' },
+    '電': { romaji: 'den', meaning: 'electricity' },
+    '気': { romaji: 'ki', meaning: 'spirit/energy' },
+    '物': { romaji: 'mono', meaning: 'thing' },
+    '品': { romaji: 'shina', meaning: 'goods' },
+    '用': { romaji: 'you', meaning: 'use' },
+    '方': { romaji: 'kata', meaning: 'direction/way' },
+    '間': { romaji: 'aida', meaning: 'interval' },
+    '所': { romaji: 'tokoro', meaning: 'place' },
+    '場': { romaji: 'ba', meaning: 'place' },
+    '力': { romaji: 'chikara', meaning: 'power' },
+    '元': { romaji: 'moto', meaning: 'origin' },
+    '金': { romaji: 'kin', meaning: 'gold/money' },
+    '銀': { romaji: 'gin', meaning: 'silver' },
+    '玉': { romaji: 'tama', meaning: 'ball/gem' },
+    '宝': { romaji: 'takara', meaning: 'treasure' },
+    '服': { romaji: 'fuku', meaning: 'clothes' },
+    '靴': { romaji: 'kutsu', meaning: 'shoes' },
+    '帽': { romaji: 'bou', meaning: 'hat' },
+    '袋': { romaji: 'fukuro', meaning: 'bag' },
+    '箱': { romaji: 'hako', meaning: 'box' },
+    '机': { romaji: 'tsukue', meaning: 'desk' },
+    '椅': { romaji: 'isu', meaning: 'chair' },
+    '窓': { romaji: 'mado', meaning: 'window' },
+    '戸': { romaji: 'to', meaning: 'door' },
+    '鍵': { romaji: 'kagi', meaning: 'key' },
+    '刀': { romaji: 'katana', meaning: 'sword' },
+    '弓': { romaji: 'yumi', meaning: 'bow' },
+    '矢': { romaji: 'ya', meaning: 'arrow' },
+    '船': { romaji: 'fune', meaning: 'ship' },
+    '飛': { romaji: 'tobu', meaning: 'fly' },
+    '歌': { romaji: 'uta', meaning: 'song' },
+    '画': { romaji: 'ga', meaning: 'picture' },
+    '絵': { romaji: 'e', meaning: 'picture' },
+    '写': { romaji: 'utsusu', meaning: 'copy' },
+    '真': { romaji: 'shin', meaning: 'true' }
+};
+
+// Define easy normal and hard kanji word data
+const kanjiWordData = {
+    easy: {
+        '一': { romaji: 'ichi', english: 'one' },
+        '二': { romaji: 'ni', english: 'two' },
+        '三': { romaji: 'san', english: 'three' },
+        '四': { romaji: 'shi', english: 'four' },
+        '五': { romaji: 'go', english: 'five' }
+    },
+    normal: {
+        '六': { romaji: 'roku', english: 'six' },
+        '七': { romaji: 'shichi', english: 'seven' },
+        '八': { romaji: 'hachi', english: 'eight' },
+        '九': { romaji: 'kyuu', english: 'nine' },
+        '十': { romaji: 'juu', english: 'ten' }
+    },
+    hard: {
+        '百': { romaji: 'hyaku', english: 'hundred' },
+        '千': { romaji: 'sen', english: 'thousand' },
+        '万': { romaji: 'man', english: 'ten thousand' }
+    }
+};
+
+
+// For extreme sentence generation, we can define templates and word categories
+// Not implemented yet
+
+
+/*
 // Example extreme templates for sentence generation
 const extremeTemplates = [
     {
@@ -217,3 +634,4 @@ const extremeWords = {
     weather: ['あめ', 'ゆき', 'はれ', 'くもり', 'かぜ'],
     person: ['ともだち', 'せんせい', 'かぞく', 'がくせい', 'ひと']
 };
+*/

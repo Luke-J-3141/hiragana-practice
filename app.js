@@ -2,6 +2,7 @@
 class JapanesePracticeApp {
     constructor() {
         this.currentMode = 'sound';
+        this.currentDataset = 'hiragana'; // Default dataset
         this.score = 0;
         this.total = 0;
         this.autoPlay = true;
@@ -17,6 +18,7 @@ class JapanesePracticeApp {
     
     init() {
         this.initializeModes();
+        this.initializeDataset(this.currentDataset);
         this.setupEventListeners();
         this.setMode('sound');
         this.updateUI();
@@ -37,7 +39,11 @@ class JapanesePracticeApp {
             this.wordTranslationMode = new WordTranslationMode(this);
         }
     }
-    
+
+    initializeDataset(dataset) {
+        this.currentDataset = dataset;
+    }
+
     setupEventListeners() {
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
@@ -72,8 +78,8 @@ class JapanesePracticeApp {
         // If called from HTML onclick, find the button by mode
         if (!targetButton) {
             const modeButtonMap = {
-                'sound': '🔊 Hiragana Sound',
-                'drawing': '✏️ Hiragana Drawing',
+                'sound': '🔊 Character Sound',
+                'drawing': '✏️ Character Drawing',
                 'wordSound': '🗣️ Word Pronunciation',
                 'wordTranslation': '🔤 Word Translation'
             };
@@ -105,8 +111,49 @@ class JapanesePracticeApp {
         }
         
         this.clearFeedback();
+        console.log(`Mode set to: ${mode}`);
     }
-    
+
+    setDataset(dataset) {
+        this.currentDataset = dataset;
+                
+        // Update button states
+        document.querySelectorAll('.dataset-btn').forEach(btn => btn.classList.remove('active'));
+        
+        // Find and activate the corresponding dataset button
+        const datasetButtonMap = {
+            'hiragana': 'ひらがな',
+            'katakana': 'カタカナ', 
+            'kanji': '漢字'
+        };
+        
+        const targetButton = Array.from(document.querySelectorAll('.dataset-btn')).find(btn => 
+            btn.textContent.trim() === datasetButtonMap[dataset]
+        );
+        
+        if (targetButton) {
+            targetButton.classList.add('active');
+        }
+        if (dataset === 'hiragana') {
+            // Initialize Hiragana-specific features
+            characterData = hiraganaData;
+        } else if (dataset === 'katakana') {
+            // Initialize Katakana-specific features
+            characterData = katakanaData;
+        } else if (dataset === 'kanji') {
+            // Initialize Kanji-specific features
+            characterData = kanjiData;
+        }
+
+        console.log(`Dataset set to: ${dataset}`);
+
+        // Go to next character in the new dataset
+        const currentModeInstance = this.getCurrentModeInstance();
+        if (currentModeInstance && currentModeInstance.next) {
+            currentModeInstance.next();
+        }
+    }
+
     toggleAutoPlay() {
         this.autoPlay = !this.autoPlay;
         const toggle = document.getElementById('autoPlayToggle');
@@ -191,6 +238,12 @@ document.addEventListener('DOMContentLoaded', function() {
 window.setMode = function(mode) {
     if (window.app) {
         window.app.setMode(mode);
+    }
+};
+
+window.setDataset = function(dataset) {
+    if (window.app) {
+        window.app.setDataset(dataset);
     }
 };
 

@@ -1,18 +1,23 @@
-// Sound Mode - Hiragana character to romaji conversion with weighted randomization
+// Sound Mode - Kanji character to reading conversion with weighted randomization
 class SoundMode {
     constructor(app) {
         this.app = app;
-        this.currentCharacter = 'あ';
+        this.currentCharacter = '';
         this.characterWeights = {}; // Track how many times each character has been shown
         this.initializeWeights();
     }
     
     initializeWeights() {
         // Initialize all characters with weight 0 (never shown)
-        const characters = Object.keys(hiraganaData);
+        const characters = Object.keys(characterData);
         characters.forEach(char => {
             this.characterWeights[char] = 0;
         });
+        
+        // Set initial character if data exists
+        if (characters.length > 0) {
+            this.currentCharacter = characters[0];
+        }
     }
     
     activate() {
@@ -21,12 +26,12 @@ class SoundMode {
     
     next() {
         this.app.clearFeedback();
-        this.nextHiraganaCharacter();
+        this.nextCharacter();
     }
     
     getWeightedRandomCharacter() {
-        const characters = Object.keys(hiraganaData);
-        
+        const characters = Object.keys(characterData);
+
         // Find the minimum weight (characters shown least)
         const minWeight = Math.min(...Object.values(this.characterWeights));
         
@@ -44,9 +49,9 @@ class SoundMode {
         return characters[Math.floor(Math.random() * characters.length)];
     }
     
-    nextHiraganaCharacter() {
+    nextCharacter() {
         // Don't pick the same character twice in a row if possible
-        const characters = Object.keys(hiraganaData);
+        const characters = Object.keys(characterData);
         let newCharacter;
         
         if (characters.length > 1) {
@@ -62,8 +67,9 @@ class SoundMode {
         // Increment the weight for this character
         this.characterWeights[this.currentCharacter]++;
         
-        const charDisplay = document.getElementById('hiraganaChar');
-        const input = document.getElementById('romajiInput');
+        // Update display elements (adjust IDs as needed for your HTML)
+        const charDisplay = document.getElementById('kanjiChar') || document.getElementById('hiraganaChar');
+        const input = document.getElementById('readingInput') || document.getElementById('romajiInput');
         
         if (charDisplay) {
             charDisplay.textContent = this.currentCharacter;
@@ -80,7 +86,10 @@ class SoundMode {
     }
     
     playSound() {
-        this.app.speak(this.currentCharacter, 'ja');
+        // For kanji, speak the romaji reading
+        const reading = this.currentCharacter;
+        this.app.speak(reading, 'ja'); // Use 'en' for English pronunciation
+        console.log(`Playing sound for: ${reading} : ${characterData[this.currentCharacter].romaji} in japanese which means '${characterData[this.currentCharacter].meaning}'`);
     }
     
     handleEnter() {
@@ -88,11 +97,11 @@ class SoundMode {
     }
     
     checkAnswer() {
-        const input = document.getElementById('romajiInput');
+        const input = document.getElementById('readingInput') || document.getElementById('romajiInput');
         if (!input) return;
         
         const userAnswer = input.value.toLowerCase().trim();
-        const correctAnswer = hiraganaData[this.currentCharacter];
+        const correctAnswer = characterData[this.currentCharacter].romaji.toLowerCase();
         
         const isCorrect = userAnswer === correctAnswer;
         this.app.updateScore(isCorrect);
@@ -101,7 +110,7 @@ class SoundMode {
             this.app.showFeedback('Correct! ✅', 'correct');
             setTimeout(() => this.next(), 1500);
         } else {
-            this.app.showFeedback(`Incorrect. The answer is "${correctAnswer}" ❌`, 'incorrect');
+            this.app.showFeedback(`Incorrect. The answer is "${characterData[this.currentCharacter].romaji}" ❌`, 'incorrect');
             // Optional: Reduce weight for incorrect answers to show them more often
             if (this.characterWeights[this.currentCharacter] > 0) {
                 this.characterWeights[this.currentCharacter]--;

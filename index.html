@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +8,17 @@
 </head>
 <body>
 <div class="container">
-<h1>🇯🇵 Japanese Practice</h1>
+<h1>Japanese Practice</h1>
+
+<div class="dataset-selector">
+    <button class="dataset-btn active" onclick="setDataset('hiragana')">ひらがな</button>
+    <button class="dataset-btn" onclick="setDataset('katakana')">カタカナ</button>
+    <button class="dataset-btn" onclick="setDataset('kanji')">漢字</button>
+</div>
 
 <div class="mode-selector">
-    <button class="mode-btn active" onclick="setMode('sound')">🔊 Hiragana Sound</button>
-    <button class="mode-btn" onclick="setMode('drawing')">✏️ Hiragana Drawing</button>
+    <button class="mode-btn active" onclick="setMode('sound')">🔊 Character Sound</button>
+    <button class="mode-btn" onclick="setMode('drawing')">✏️ Character Drawing</button>
     <button class="mode-btn" onclick="setMode('wordSound')">🗣️ Word Pronunciation</button>
     <button class="mode-btn" onclick="setMode('wordTranslation')">🔤 Word Translation</button>
 </div>
@@ -44,7 +49,7 @@
     <!-- Drawing Practice Mode -->
     <div id="drawingMode" class="hidden">
         <div class="romaji-display" id="drawRomajiChar">a</div>
-        <p>Draw the hiragana character:</p>
+        <p>Draw the character:</p>
         <div id="hintDisplay" class="hint-display hidden"></div>
         <div class="canvas-container">
             <canvas id="drawingCanvas" width="300" height="300"></canvas>
@@ -98,9 +103,13 @@
 </div>
 
 <script src="data.js"></script>
+<script>
+    let characterData = hiraganaData; // Default dataset
+</script>
+
 <script src="sound-mode.js"></script>
 <script src="drawing-mode.js"></script>
 <script src="word-sound-mode.js"></script>
 <script src="word-translation-mode.js"></script>
-<script src="multiple-choice.js"></script>
 <script src="app.js"></script>
+</document_content>

@@ -52,12 +52,12 @@ class DrawingMode {
     }
     
     nextDrawingCharacter() {
-        const characters = Object.keys(hiraganaData);
+        const characters = Object.keys(characterData);
         this.currentCharacter = characters[Math.floor(Math.random() * characters.length)];
         
         const charDisplay = document.getElementById('drawRomajiChar');
         if (charDisplay) {
-            charDisplay.textContent = hiraganaData[this.currentCharacter];
+            charDisplay.textContent = characterData[this.currentCharacter].romaji;
         }
         
         this.clearCanvas();
@@ -122,6 +122,7 @@ class DrawingMode {
             return index % 4 === 3 && channel !== 0; // Check alpha channel
         });
         
+        // Currently dont have a way to validate the drawing against the character
         const isCorrect = hasDrawing;
         this.app.updateScore(isCorrect);
         

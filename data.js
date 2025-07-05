@@ -1,6 +1,3 @@
-let characterData = hiraganaData; // Default dataset
-let wordData = hiraganaWordData; // Default word dataset
-
 // Enhanced hiragana data with romaji and meaning structure
 const hiraganaData = {
     //  a            i           u            e            o

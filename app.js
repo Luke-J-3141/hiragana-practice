@@ -137,12 +137,15 @@ class JapanesePracticeApp {
         if (dataset === 'hiragana') {
             // Initialize Hiragana-specific features
             characterData = hiraganaData;
+            wordData = hiraganaWordData;
         } else if (dataset === 'katakana') {
             // Initialize Katakana-specific features
             characterData = katakanaData;
+            wordData = katakanaWordData;
         } else if (dataset === 'kanji') {
             // Initialize Kanji-specific features
             characterData = kanjiData;
+            wordData = kanjiWordData;
         }
 
         console.log(`Dataset set to: ${dataset}`);

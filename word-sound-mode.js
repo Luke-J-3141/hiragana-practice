@@ -44,6 +44,8 @@ class WordSoundMode {
     }
     
     playSound() {
+        console.log(`Playing sound for word: ${this.currentWord} : ${wordData[this.currentDifficulty][this.currentWord].romaji} 
+            which means '${wordData[this.currentDifficulty][this.currentWord].meaning}' in Japanese`);
         this.app.speak(this.currentWord, 'ja');
     }
     

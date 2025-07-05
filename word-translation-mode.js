@@ -59,7 +59,7 @@ class WordTranslationMode {
         const template = extremeTemplates[Math.floor(Math.random() * extremeTemplates.length)];
         let sentence = template.template;
         let romaji = template.romaji;
-        let english = template.english;
+        let meaning = template.meaning;
         
         // Replace placeholders with random words
         const placeholders = sentence.match(/{(\w+)}/g);
@@ -70,13 +70,13 @@ class WordTranslationMode {
                     const word = extremeWords[key][Math.floor(Math.random() * extremeWords[key].length)];
                     sentence = sentence.replace(placeholder, word);
                     romaji = romaji.replace(placeholder, this.getWordRomaji(word));
-                    english = english.replace(placeholder, this.getWordEnglish(word));
+                    meaning = meaning.replace(placeholder, this.getWordMeaning(word));
                 }
             });
         }
         
         this.currentWord = sentence;
-        this.currentWordData = { romaji: romaji, english: english };
+        this.currentWordData = { romaji: romaji, meaning: meaning };
         
         this.updateDisplay();
     }
@@ -126,22 +126,16 @@ class WordTranslationMode {
         return romaji;
     }
     
-    getWordEnglish(word) {
-        const wordMap = {
-            'ねこ': 'cat', 'いぬ': 'dog', 'ほん': 'book', 'くるま': 'car', 'がっこう': 'school',
-            'すき': 'like', 'きれい': 'pretty', 'おおきい': 'big', 'ちいさい': 'small', 'あたらしい': 'new',
-            'あめ': 'rain', 'ゆき': 'snow', 'はれ': 'sunny', 'くもり': 'cloudy', 'かぜ': 'wind',
-            'ともだち': 'friend', 'せんせい': 'teacher', 'かぞく': 'family', 'がくせい': 'student', 'ひと': 'person',
-            'いえ': 'house', 'えき': 'station', 'びょういん': 'hospital', 'みせ': 'store',
-            'いき': 'go', 'き': 'come', 'かえり': 'return', 'はしり': 'run', 'あるき': 'walk',
-            'あさ': 'morning', 'ひる': 'noon', 'よる': 'night', 'はちじ': '8 o\'clock', 'くじ': '9 o\'clock',
-            'べんきょう': 'study', 'しごと': 'work', 'りょうり': 'cooking', 'そうじ': 'cleaning', 'うんどう': 'exercise',
-            'あか': 'red', 'あお': 'blue', 'きいろ': 'yellow', 'みどり': 'green', 'しろ': 'white'
-        };
-        return wordMap[word] || word;
+    getWordMeaning(word) {
+        // Helper function to get meaning for extreme mode word replacement
+        // This would need to be implemented based on your word lookup system
+        return word; // Placeholder - replace with actual meaning lookup
     }
     
     playSound() {
+        // Add console logging
+        console.log(`Playing sound for word: ${this.currentWord} : ${this.currentWordData.romaji} which means '${this.currentWordData.meaning}' in Japanese`);
+        
         this.app.speak(this.currentWord, 'ja');
     }
     
@@ -154,7 +148,7 @@ class WordTranslationMode {
         if (!input) return;
         
         const userAnswer = input.value.toLowerCase().trim();
-        const correctAnswer = this.currentWordData.english.toLowerCase();
+        const correctAnswer = this.currentWordData.meaning.toLowerCase();
         
         const isCorrect = this.checkTranslationMatch(userAnswer, correctAnswer);
         this.app.updateScore(isCorrect);

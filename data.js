@@ -43,6 +43,7 @@ const hiraganaData = {
 // Difficulty-based word data
 const hiraganaWordData = {
     easy: {
+        // Original words (katakana words removed)
         'あめ': { romaji: 'ame', meaning: 'rain' },
         'いぬ': { romaji: 'inu', meaning: 'dog' },
         'うみ': { romaji: 'umi', meaning: 'sea' },
@@ -63,7 +64,6 @@ const hiraganaWordData = {
         'よる': { romaji: 'yoru', meaning: 'night' },
         'わたし': { romaji: 'watashi', meaning: 'I' },
         'ひ': { romaji: 'hi', meaning: 'fire' },
-        // New easy words
         'ねこ': { romaji: 'neko', meaning: 'cat' },
         'あさ': { romaji: 'asa', meaning: 'morning' },
         'ひる': { romaji: 'hiru', meaning: 'noon' },
@@ -71,7 +71,7 @@ const hiraganaWordData = {
         'はな': { romaji: 'hana', meaning: 'flower' },
         'め': { romaji: 'me', meaning: 'eye' },
         'みみ': { romaji: 'mimi', meaning: 'ear' },
-        'あし': { romaji: 'ashi', meaning: 'foot/leg' },
+        'あし': { romaji: 'ashi', meaning: 'foot' },
         'いえ': { romaji: 'ie', meaning: 'house' },
         'とり': { romaji: 'tori', meaning: 'bird' },
         'かぜ': { romaji: 'kaze', meaning: 'wind' },
@@ -86,14 +86,150 @@ const hiraganaWordData = {
         'はし': { romaji: 'hashi', meaning: 'bridge' },
         'みち': { romaji: 'michi', meaning: 'road' },
         'まち': { romaji: 'machi', meaning: 'town' },
-        'ドア': { romaji: 'doa', meaning: 'door' },
         'まど': { romaji: 'mado', meaning: 'window' },
-        'つくえ': { romaji: 'tsukue', meaning: 'desk' },
         'いす': { romaji: 'isu', meaning: 'chair' },
         'かみ': { romaji: 'kami', meaning: 'paper' },
-        'ペン': { romaji: 'pen', meaning: 'pen' },
         'はこ': { romaji: 'hako', meaning: 'box' },
-        'かばん': { romaji: 'kaban', meaning: 'bag' }
+
+        // Body parts
+        'はな': { romaji: 'hana', meaning: 'nose' },
+        'は': { romaji: 'ha', meaning: 'tooth' },
+        'した': { romaji: 'shita', meaning: 'tongue' },
+        'くび': { romaji: 'kubi', meaning: 'neck' },
+        'ゆび': { romaji: 'yubi', meaning: 'finger' },
+        'つめ': { romaji: 'tsume', meaning: 'nail' },
+        'ひざ': { romaji: 'hiza', meaning: 'knee' },
+        'ひじ': { romaji: 'hiji', meaning: 'elbow' },
+        'かた': { romaji: 'kata', meaning: 'shoulder' },
+
+        // Food and drink (katakana removed)
+        'にく': { romaji: 'niku', meaning: 'meat' },
+        'いも': { romaji: 'imo', meaning: 'potato' },
+        'あめ': { romaji: 'ame', meaning: 'candy' },
+
+        // Clothing
+        'ふく': { romaji: 'fuku', meaning: 'clothes' },
+        'くつ': { romaji: 'kutsu', meaning: 'shoes' },
+
+        // Household items
+        'かがみ': { romaji: 'kagami', meaning: 'mirror' },
+        'かさ': { romaji: 'kasa', meaning: 'umbrella' },
+
+        // Colors
+        'あか': { romaji: 'aka', meaning: 'red' },
+        'あお': { romaji: 'ao', meaning: 'blue' },
+        'しろ': { romaji: 'shiro', meaning: 'white' },
+        'くろ': { romaji: 'kuro', meaning: 'black' },
+
+        // Numbers (1-10)
+        'いち': { romaji: 'ichi', meaning: 'one' },
+        'に': { romaji: 'ni', meaning: 'two' },
+        'さん': { romaji: 'san', meaning: 'three' },
+        'よん': { romaji: 'yon', meaning: 'four' },
+        'ご': { romaji: 'go', meaning: 'five' },
+        'ろく': { romaji: 'roku', meaning: 'six' },
+        'なな': { romaji: 'nana', meaning: 'seven' },
+        'はち': { romaji: 'hachi', meaning: 'eight' },
+        'きゅう': { romaji: 'kyuu', meaning: 'nine' },
+        'じゅう': { romaji: 'juu', meaning: 'ten' },
+
+        // Transportation
+        'くるま': { romaji: 'kuruma', meaning: 'car' },
+        'ふね': { romaji: 'fune', meaning: 'ship' },
+
+        // Animals
+        'うし': { romaji: 'ushi', meaning: 'cow' },
+        'うま': { romaji: 'uma', meaning: 'horse' },
+        'ぶた': { romaji: 'buta', meaning: 'pig' },
+        'うさぎ': { romaji: 'usagi', meaning: 'rabbit' },
+        'かめ': { romaji: 'kame', meaning: 'turtle' },
+        'へび': { romaji: 'hebi', meaning: 'snake' },
+        'かえる': { romaji: 'kaeru', meaning: 'frog' },
+        'むし': { romaji: 'mushi', meaning: 'bug' },
+
+        // School supplies
+        'のり': { romaji: 'nori', meaning: 'glue' },
+
+        // Common verbs (dictionary form)
+        'たべる': { romaji: 'taberu', meaning: 'eat' },
+        'のむ': { romaji: 'nomu', meaning: 'drink' },
+        'みる': { romaji: 'miru', meaning: 'see' },
+        'きく': { romaji: 'kiku', meaning: 'listen' },
+        'よむ': { romaji: 'yomu', meaning: 'read' },
+        'かく': { romaji: 'kaku', meaning: 'write' },
+        'いく': { romaji: 'iku', meaning: 'go' },
+        'くる': { romaji: 'kuru', meaning: 'come' },
+        'ねる': { romaji: 'neru', meaning: 'sleep' },
+
+        // Common adjectives
+        'いい': { romaji: 'ii', meaning: 'good' },
+        'わるい': { romaji: 'warui', meaning: 'bad' },
+        'あつい': { romaji: 'atsui', meaning: 'hot' },
+        'さむい': { romaji: 'samui', meaning: 'cold' },
+
+        // Time words
+        'きょう': { romaji: 'kyou', meaning: 'today' },
+        'きのう': { romaji: 'kinou', meaning: 'yesterday' },
+        'いま': { romaji: 'ima', meaning: 'now' },
+        'まえ': { romaji: 'mae', meaning: 'before' },
+        'あと': { romaji: 'ato', meaning: 'after' },
+
+        // Common objects
+        'かぎ': { romaji: 'kagi', meaning: 'key' },
+
+        // NEW ADDITIONS - Simple hiragana words (3 characters or less)
+        'あに': { romaji: 'ani', meaning: 'older brother' },
+        'あね': { romaji: 'ane', meaning: 'older sister' },
+        'おと': { romaji: 'oto', meaning: 'sound' },
+        'おに': { romaji: 'oni', meaning: 'demon' },
+        'かぜ': { romaji: 'kaze', meaning: 'wind' },
+        'きた': { romaji: 'kita', meaning: 'north' },
+        'きぬ': { romaji: 'kinu', meaning: 'silk' },
+        'くま': { romaji: 'kuma', meaning: 'bear' },
+        'こめ': { romaji: 'kome', meaning: 'rice' },
+        'しお': { romaji: 'shio', meaning: 'salt' },
+        'すし': { romaji: 'sushi', meaning: 'sushi' },
+        'たけ': { romaji: 'take', meaning: 'bamboo' },
+        'つち': { romaji: 'tsuchi', meaning: 'soil' },
+        'とら': { romaji: 'tora', meaning: 'tiger' },
+        'なみ': { romaji: 'nami', meaning: 'wave' },
+        'のり': { romaji: 'nori', meaning: 'seaweed' },
+        'はち': { romaji: 'hachi', meaning: 'bee' },
+        'ひも': { romaji: 'himo', meaning: 'string' },
+        'ふみ': { romaji: 'fumi', meaning: 'letter' },
+        'ほし': { romaji: 'hoshi', meaning: 'star' },
+        'みそ': { romaji: 'miso', meaning: 'miso' },
+        'もも': { romaji: 'momo', meaning: 'peach' },
+        'やく': { romaji: 'yaku', meaning: 'medicine' },
+        'ゆめ': { romaji: 'yume', meaning: 'dream' },
+        'らく': { romaji: 'raku', meaning: 'easy' },
+        'わに': { romaji: 'wani', meaning: 'crocodile' },
+        'あぶ': { romaji: 'abu', meaning: 'horsefly' },
+        'いと': { romaji: 'ito', meaning: 'thread' },
+        'うた': { romaji: 'uta', meaning: 'song' },
+        'えび': { romaji: 'ebi', meaning: 'shrimp' },
+        'おび': { romaji: 'obi', meaning: 'belt' },
+        'かに': { romaji: 'kani', meaning: 'crab' },
+        'きり': { romaji: 'kiri', meaning: 'fog' },
+        'くし': { romaji: 'kushi', meaning: 'comb' },
+        'けが': { romaji: 'kega', meaning: 'injury' },
+        'こし': { romaji: 'koshi', meaning: 'waist' },
+        'すみ': { romaji: 'sumi', meaning: 'charcoal' },
+        'たき': { romaji: 'taki', meaning: 'waterfall' },
+        'つぼ': { romaji: 'tsubo', meaning: 'jar' },
+        'なべ': { romaji: 'nabe', meaning: 'pot' },
+        'のこ': { romaji: 'noko', meaning: 'saw' },
+        'はり': { romaji: 'hari', meaning: 'needle' },
+        'ひげ': { romaji: 'hige', meaning: 'beard' },
+        'ふた': { romaji: 'futa', meaning: 'lid' },
+        'へた': { romaji: 'heta', meaning: 'poor at' },
+        'ほね': { romaji: 'hone', meaning: 'bone' },
+        'みみ': { romaji: 'mimi', meaning: 'ear' },
+        'むね': { romaji: 'mune', meaning: 'chest' },
+        'やね': { romaji: 'yane', meaning: 'roof' },
+        'よい': { romaji: 'yoi', meaning: 'good' },
+        'らし': { romaji: 'rashi', meaning: 'seems' },
+        'わた': { romaji: 'wata', meaning: 'cotton' }
     },
     normal: {
         'こんにちは': { romaji: 'konnichiwa', meaning: 'hello' },

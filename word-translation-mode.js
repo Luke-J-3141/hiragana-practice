@@ -29,7 +29,10 @@ class WordTranslationMode {
         } else {
             this.loadRegularWord();
         }
-        
+
+        // Add console logging
+        // console.log(`Playing sound for word: ${this.currentWord} : ${this.currentWordData.romaji} which means '${this.currentWordData.meaning}' in Japanese`);
+    
         if (this.app.autoPlay) {
             this.playSound();
         }
@@ -241,41 +244,16 @@ class WordTranslationMode {
     }
     
     getWordRomaji(word) {
-        let romaji = '';
-        let i = 0;
-        while (i < word.length) {
-            let found = false;
-            // Check for 2-character combinations first
-            if (i < word.length - 1) {
-                const twoChar = word.substr(i, 2);
-                if (hiraganaData[twoChar]) {
-                    romaji += hiraganaData[twoChar];
-                    i += 2;
-                    found = true;
-                }
-            }
-            // Then check single characters
-            if (!found) {
-                const oneChar = word.charAt(i);
-                if (hiraganaData[oneChar]) {
-                    romaji += hiraganaData[oneChar];
-                }
-                i++;
-            }
-        }
+        let romaji = this.currentWordData.romaji;
         return romaji;
     }
     
     getWordMeaning(word) {
-        // Helper function to get meaning for extreme mode word replacement
-        // This would need to be implemented based on your word lookup system
-        return word; // Placeholder - replace with actual meaning lookup
+        let meaning = this.currentWordData.meaning;
+        return meaning; 
     }
     
     playSound() {
-        // Add console logging
-        console.log(`Playing sound for word: ${this.currentWord} : ${this.currentWordData.romaji} which means '${this.currentWordData.meaning}' in Japanese`);
-        
         this.app.speak(this.currentWord, 'ja');
     }
     
@@ -297,7 +275,7 @@ class WordTranslationMode {
         this.updateWordStats(this.currentWord, isCorrect);
         
         if (isCorrect) {
-            this.app.showFeedback('Correct! ✅', 'correct');
+            this.app.showFeedback(`Correct! ✅ "${correctAnswer}" is the answer`, 'correct');
             setTimeout(() => this.next(), 1500);
         } else {
             this.app.showFeedback(`Incorrect. The answer is "${correctAnswer}" ❌`, 'incorrect');

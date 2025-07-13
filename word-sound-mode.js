@@ -43,7 +43,10 @@ class WordSoundMode {
             input.value = '';
             input.focus();
         }
-        
+
+        console.log(`Playing sound for word: ${this.currentWord} : ${wordData[this.currentDifficulty][this.currentWord].romaji} 
+            which means '${wordData[this.currentDifficulty][this.currentWord].meaning}' in Japanese`);
+            
         if (this.app.autoPlay) {
             this.playSound();
         }
@@ -124,8 +127,6 @@ class WordSoundMode {
     }
     
     playSound() {
-        console.log(`Playing sound for word: ${this.currentWord} : ${wordData[this.currentDifficulty][this.currentWord].romaji} 
-            which means '${wordData[this.currentDifficulty][this.currentWord].meaning}' in Japanese`);
         this.app.speak(this.currentWord, 'ja');
     }
     
@@ -154,7 +155,7 @@ class WordSoundMode {
         this.updateWordStats(this.currentWord, isCorrect);
         
         if (isCorrect) {
-            this.app.showFeedback('Correct! ✅', 'correct');
+            this.app.showFeedback(`Correct! ✅ "${correctAnswer}" is the romaji for "${this.currentWord}"`, 'correct');
             setTimeout(() => this.next(), 1500);
         } else {
             this.app.showFeedback(`Incorrect. The answer is "${correctAnswer}" ❌`, 'incorrect');
@@ -188,22 +189,17 @@ class WordSoundMode {
     
     loadWordStats() {
         try {
-            // Note: In Claude.ai artifacts, localStorage is not available
-            // This would need to be replaced with in-memory storage or server-side storage
-            // For now, return empty object
-            return {};
+            const saved = localStorage.getItem('wordTranslationStats');
+            return saved ? JSON.parse(saved) : {};
         } catch (error) {
             console.error('Error loading word stats:', error);
             return {};
         }
     }
-    
+
     saveWordStats() {
         try {
-            // Note: In Claude.ai artifacts, localStorage is not available
-            // This would need to be replaced with in-memory storage or server-side storage
-            // For now, this is a no-op
-            console.log('Word stats would be saved:', this.wordStats);
+            localStorage.setItem('wordTranslationStats', JSON.stringify(this.wordStats));
         } catch (error) {
             console.error('Error saving word stats:', error);
         }

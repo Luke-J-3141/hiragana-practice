@@ -279,6 +279,7 @@ class WordTranslationMode {
             setTimeout(() => this.next(), 1500);
         } else {
             this.app.showFeedback(`Incorrect. The answer is "${correctAnswer}" ❌`, 'incorrect');
+            setTimeout(() => this.next(), 2000);
         }
     }
     

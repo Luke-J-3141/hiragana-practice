@@ -1,10 +1,11 @@
-// Word Translation Mode - Japanese words to English translation
+// Word Translation Mode - Bidirectional Japanese-English translation
 class WordTranslationMode {
     constructor(app) {
         this.app = app;
         this.currentWord = '';
         this.currentWordData = null;
         this.currentDifficulty = 'easy';
+        this.translationDirection = 'jp-to-en'; // 'jp-to-en' or 'en-to-jp'
         
         // Word statistics tracking
         this.wordStats = this.loadWordStats();
@@ -74,7 +75,7 @@ class WordTranslationMode {
     }
     
     calculateWeight(word) {
-        const key = `${this.currentDifficulty}_${word}`;
+        const key = `${this.currentDifficulty}_${word}_${this.translationDirection}`;
         const stats = this.wordStats[key];
         
         if (!stats) {
@@ -129,7 +130,7 @@ class WordTranslationMode {
     }
     
     updateWordStats(word, isCorrect) {
-        const key = `${this.currentDifficulty}_${word}`;
+        const key = `${this.currentDifficulty}_${word}_${this.translationDirection}`;
         
         if (!this.wordStats[key]) {
             this.wordStats[key] = {
@@ -174,7 +175,7 @@ class WordTranslationMode {
     // Method to reset stats for a specific word or all words
     resetWordStats(word = null) {
         if (word) {
-            const key = `${this.currentDifficulty}_${word}`;
+            const key = `${this.currentDifficulty}_${word}_${this.translationDirection}`;
             delete this.wordStats[key];
         } else {
             this.wordStats = {};
@@ -185,10 +186,30 @@ class WordTranslationMode {
     // Method to get stats for debugging or display
     getWordStats(word = null) {
         if (word) {
-            const key = `${this.currentDifficulty}_${word}`;
+            const key = `${this.currentDifficulty}_${word}_${this.translationDirection}`;
             return this.wordStats[key] || null;
         }
         return this.wordStats;
+    }
+    
+    // Toggle translation direction
+    toggleTranslationDirection() {
+        this.translationDirection = this.translationDirection === 'jp-to-en' ? 'en-to-jp' : 'jp-to-en';
+        this.updateDirectionButton();
+        this.next(); // Load new word with new direction
+    }
+    
+    updateDirectionButton() {
+        const directionBtn = document.getElementById('directionToggle');
+        if (directionBtn) {
+            if (this.translationDirection === 'jp-to-en') {
+                directionBtn.textContent = '🇯🇵→🇬🇧 JP to EN';
+                directionBtn.title = 'Click to switch to English to Japanese';
+            } else {
+                directionBtn.textContent = '🇬🇧→🇯🇵 EN to JP';
+                directionBtn.title = 'Click to switch to Japanese to English';
+            }
+        }
     }
     
     generateExtremeSentence() {
@@ -229,18 +250,39 @@ class WordTranslationMode {
         const pronunciation = document.getElementById('wordPronunciation');
         const input = document.getElementById('translationInput');
         
-        if (wordDisplay) {
-            wordDisplay.textContent = this.currentWord;
+        if (this.translationDirection === 'jp-to-en') {
+            // Japanese to English (original behavior)
+            if (wordDisplay) {
+                wordDisplay.textContent = this.currentWord;
+            }
+            
+            if (pronunciation) {
+                pronunciation.textContent = this.currentWordData.romaji;
+            }
+            
+            if (input) {
+                input.placeholder = 'Type English meaning...';
+                input.value = '';
+                input.focus();
+            }
+        } else {
+            // English to Japanese
+            if (wordDisplay) {
+                wordDisplay.textContent = this.currentWordData.meaning;
+            }
+            
+            if (pronunciation) {
+                pronunciation.textContent = this.currentWordData.meaning; // Use meaning as pronunciation for English
+            }
+            
+            if (input) {
+                input.placeholder = 'Type Japanese characters...';
+                input.value = '';
+                input.focus();
+            }
         }
         
-        if (pronunciation) {
-            pronunciation.textContent = this.currentWordData.romaji;
-        }
-        
-        if (input) {
-            input.value = '';
-            input.focus();
-        }
+        this.updateDirectionButton();
     }
     
     getWordRomaji(word) {
@@ -254,7 +296,13 @@ class WordTranslationMode {
     }
     
     playSound() {
-        this.app.speak(this.currentWord, 'ja');
+        if (this.translationDirection === 'jp-to-en') {
+            // Play Japanese pronunciation
+            this.app.speak(this.currentWord, 'ja');
+        } else {
+            // Play English pronunciation
+            this.app.speak(this.currentWordData.meaning, 'en');
+        }
     }
     
     handleEnter() {
@@ -266,9 +314,18 @@ class WordTranslationMode {
         if (!input) return;
         
         const userAnswer = input.value.toLowerCase().trim();
-        const correctAnswer = this.currentWordData.meaning.toLowerCase();
+        let correctAnswer, isCorrect;
         
-        const isCorrect = this.checkTranslationMatch(userAnswer, correctAnswer);
+        if (this.translationDirection === 'jp-to-en') {
+            // Japanese to English
+            correctAnswer = this.currentWordData.meaning.toLowerCase();
+            isCorrect = this.checkTranslationMatch(userAnswer, correctAnswer);
+        } else {
+            // English to Japanese
+            correctAnswer = this.currentWordData.romaji.trim();
+            isCorrect = this.checkJapaneseMatch(input.value.trim(), correctAnswer);
+        }
+        
         this.app.updateScore(isCorrect);
         
         // Update word statistics
@@ -286,7 +343,12 @@ class WordTranslationMode {
     checkTranslationMatch(input, correct) {
         // Exact match
         if (input === correct) return true;
-       
+        return false;
+    }
+    
+    checkJapaneseMatch(input, correct) {
+        // Exact match for Japanese characters
+        if (input === correct) return true;
         return false;
     }
     

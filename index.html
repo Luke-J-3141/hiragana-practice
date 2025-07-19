@@ -85,6 +85,7 @@
             <button class="difficulty-btn active" onclick="setTranslationDifficulty('easy')">Easy</button>
             <button class="difficulty-btn" onclick="setTranslationDifficulty('normal')">Normal</button>
             <button class="difficulty-btn" onclick="setTranslationDifficulty('hard')">Hard</button>
+            <button class="direction-toggle-btn" id="directionToggle" onclick="toggleTranslationDirection()">🇯🇵→🇬🇧 JP to EN</button>
         </div>
         <div class="word-display" id="translationWordDisplay">こんにちは</div>
         <div class="word-info">
@@ -113,4 +114,30 @@
 <script src="word-sound-mode.js"></script>
 <script src="word-translation-mode.js"></script>
 <script src="app.js"></script>
+
+<style>
+.direction-toggle-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.direction-toggle-btn:hover {
+    background: #45a049;
+}
+
+.difficulty-selector {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+</style>
 </document_content>

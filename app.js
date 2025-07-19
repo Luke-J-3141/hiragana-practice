@@ -114,6 +114,13 @@ class JapanesePracticeApp {
         console.log(`Mode set to: ${mode}`);
     }
 
+    // Global function to toggle translation direction
+    toggleTranslationDirection() {
+        if (app && app.wordTranslationMode) {
+            app.wordTranslationMode.toggleTranslationDirection();
+        }
+    }
+
     setDataset(dataset) {
         this.currentDataset = dataset;
                 
@@ -241,6 +248,12 @@ document.addEventListener('DOMContentLoaded', function() {
 window.setMode = function(mode) {
     if (window.app) {
         window.app.setMode(mode);
+    }
+};
+
+window.toggleTranslationDirection = function() {
+    if (window.app) {
+        window.app.toggleTranslationDirection();
     }
 };
 

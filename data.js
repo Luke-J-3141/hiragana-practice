@@ -284,8 +284,6 @@ const hiraganaWordData = {
         'きのう': { romaji: 'kinou', meaning: 'yesterday' },
         'あした': { romaji: 'ashita', meaning: 'tomorrow' },
         'てんき': { romaji: 'tenki', meaning: 'weather' },
-        'あつい': { romaji: 'atsui', meaning: 'hot' },
-        'さむい': { romaji: 'samui', meaning: 'cold' },
         'あたたかい': { romaji: 'atatakai', meaning: 'warm' },
         'すずしい': { romaji: 'suzushii', meaning: 'cool' },
         'おもしろい': { romaji: 'omoshiroi', meaning: 'interesting' },

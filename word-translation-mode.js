@@ -322,8 +322,8 @@ class WordTranslationMode {
             isCorrect = this.checkTranslationMatch(userAnswer, correctAnswer);
         } else {
             // English to Japanese
-            correctAnswer = this.currentWordData.romaji.trim();
-            isCorrect = this.checkJapaneseMatch(input.value.trim(), correctAnswer);
+            correctAnswer = this.currentWordData.romaji.toLowerCase();
+            isCorrect = this.checkJapaneseMatch(userAnswer, correctAnswer);
         }
         
         this.app.updateScore(isCorrect);

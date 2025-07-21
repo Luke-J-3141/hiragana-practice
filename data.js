@@ -235,6 +235,8 @@ const hiraganaWordData = {
         'こんにちは': { romaji: 'konnichiwa', meaning: 'hello' },
         'ありがとう': { romaji: 'arigatou', meaning: 'thank you' },
         'おはよう': { romaji: 'ohayou', meaning: 'good morning' },
+        'おやすみ': { romaji: 'oyasumi', meaning: 'good night' },
+        'こんばんは': { romaji: 'konbanwa', meaning: 'good evening' },
         'さようなら': { romaji: 'sayounara', meaning: 'goodbye' },
         'すみません': { romaji: 'sumimasen', meaning: 'excuse me' },
         'ともだち': { romaji: 'tomodachi', meaning: 'friend' },

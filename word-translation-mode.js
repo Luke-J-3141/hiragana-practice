@@ -296,15 +296,39 @@ class WordTranslationMode {
     }
     
     playSound() {
+        const utterance = new SpeechSynthesisUtterance();
+        
         if (this.translationDirection === 'jp-to-en') {
-            // Play Japanese pronunciation
-            this.app.speak(this.currentWord, 'ja');
+            utterance.text = this.currentWord;
+            utterance.lang = 'ja-JP';
+            utterance.rate = 0.8; // Slower for better clarity
+            utterance.pitch = 1.0;
+            
+            // Try to select a specific Japanese voice
+            const voices = speechSynthesis.getVoices();
+            const japaneseVoice = voices.find(voice => 
+                voice.lang.includes('ja') && voice.name.includes('Google')
+            );
+            if (japaneseVoice) utterance.voice = japaneseVoice;
+            
         } else {
-            // Play English pronunciation
-            this.app.speak(this.currentWordData.meaning, 'en');
+            utterance.text = this.currentWordData.meaning;
+            utterance.lang = 'en-US';
+            utterance.rate = 1.3;
+            utterance.pitch = 1.0;
+            
+            // Select a natural-sounding English voice
+            const voices = speechSynthesis.getVoices();
+            const englishVoice = voices.find(voice => 
+                voice.lang.includes('en-US') && 
+                (voice.name.includes('Google') || voice.name.includes('Microsoft'))
+            );
+            if (englishVoice) utterance.voice = englishVoice;
         }
+        
+        speechSynthesis.speak(utterance);
     }
-    
+        
     handleEnter() {
         this.checkAnswer();
     }

@@ -32,7 +32,7 @@ class WordTranslationMode {
         }
 
         // Add console logging
-        // console.log(`Playing sound for word: ${this.currentWord} : ${this.currentWordData.romaji} which means '${this.currentWordData.meaning}' in Japanese`);
+        console.log(`Playing sound for word: ${this.currentWord} : ${this.currentWordData.romaji} which means ${this.currentWordData.meaning} in Japanese`);
     
         if (this.app.autoPlay) {
             this.playSound();
@@ -347,7 +347,9 @@ class WordTranslationMode {
         } else {
             // English to Japanese
             correctAnswer = this.currentWordData.romaji.toLowerCase();
-            isCorrect = this.checkJapaneseMatch(userAnswer, correctAnswer);
+            let correctAnswerHiragana = this.currentWord;
+            console.log(`Correct answer in Hiragana: ${correctAnswerHiragana}`);
+            isCorrect = this.checkJapaneseMatch(userAnswer, correctAnswer, correctAnswerHiragana);
         }
         
         this.app.updateScore(isCorrect);
@@ -370,9 +372,9 @@ class WordTranslationMode {
         return false;
     }
     
-    checkJapaneseMatch(input, correct) {
+    checkJapaneseMatch(input, correctRomaji, correctHiragana) {
         // Exact match for Japanese characters
-        if (input === correct) return true;
+        if (input === correctRomaji || input === correctHiragana) return true;
         return false;
     }
     

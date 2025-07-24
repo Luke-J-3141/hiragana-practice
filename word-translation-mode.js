@@ -248,6 +248,7 @@ class WordTranslationMode {
     updateDisplay() {
         const wordDisplay = document.getElementById('translationWordDisplay');
         const pronunciation = document.getElementById('wordPronunciation');
+        // const description = document.getElementById('wordDescription');
         const input = document.getElementById('translationInput');
         
         if (this.translationDirection === 'jp-to-en') {
@@ -259,6 +260,11 @@ class WordTranslationMode {
             if (pronunciation) {
                 pronunciation.textContent = this.currentWordData.romaji;
             }
+
+            // Uncomment when description is needed like for levels of politness
+            //if (description) {
+            //    description.textContent = this.currentWordData.description; // Use description for Japanese
+            //}
             
             if (input) {
                 input.placeholder = 'Type English meaning...';

@@ -255,7 +255,7 @@ const hiraganaWordData = {
         'あした': { romaji: 'ashita', meaning: 'tomorrow', description: 'The day after today' },
         'いま': { romaji: 'ima', meaning: 'now', description: 'At the present moment' },
 
-        /*
+        
         'がっこう': { romaji: 'gakkou', meaning: 'school' },
         'しごと': { romaji: 'shigoto', meaning: 'work' },
         'でんわ': { romaji: 'denwa', meaning: 'telephone' },
@@ -299,7 +299,7 @@ const hiraganaWordData = {
         'むずかしい': { romaji: 'muzukashii', meaning: 'difficult' },
         'やさしい': { romaji: 'yasashii', meaning: 'easy/kind' },
         'あたらしい': { romaji: 'atarashii', meaning: 'new' },
-        'ふるい': { romaji: 'furui', meaning: 'old' }*/
+        'ふるい': { romaji: 'furui', meaning: 'old' }
     },
     hard: {
         'はじめまして': { romaji: 'hajimemashite', meaning: 'nice to meet you' , description: 'A phrase used when meeting someone for the first time' },

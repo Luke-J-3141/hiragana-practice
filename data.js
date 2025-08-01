@@ -178,11 +178,10 @@ const hiraganaWordData = {
         'かぎ': { romaji: 'kagi', meaning: 'key' , description: 'A device used to open or close a lock' },
 
         // NEW ADDITIONS - Simple hiragana words (3 characters or less)
-        /*'あに': { romaji: 'ani', meaning: 'older brother' },
+        'あに': { romaji: 'ani', meaning: 'older brother' },
         'あね': { romaji: 'ane', meaning: 'older sister' },
         'おと': { romaji: 'oto', meaning: 'sound' },
         'おに': { romaji: 'oni', meaning: 'demon' },
-        'かぜ': { romaji: 'kaze', meaning: 'wind' },
         'きた': { romaji: 'kita', meaning: 'north' },
         'きぬ': { romaji: 'kinu', meaning: 'silk' },
         'くま': { romaji: 'kuma', meaning: 'bear' },
@@ -224,12 +223,11 @@ const hiraganaWordData = {
         'ふた': { romaji: 'futa', meaning: 'lid' },
         'へた': { romaji: 'heta', meaning: 'poor at' },
         'ほね': { romaji: 'hone', meaning: 'bone' },
-        'みみ': { romaji: 'mimi', meaning: 'ear' },
         'むね': { romaji: 'mune', meaning: 'chest' },
         'やね': { romaji: 'yane', meaning: 'roof' },
         'よい': { romaji: 'yoi', meaning: 'good' },
         'らし': { romaji: 'rashi', meaning: 'seems' },
-        'わた': { romaji: 'wata', meaning: 'cotton' }*/
+        'わた': { romaji: 'wata', meaning: 'cotton' }
     },
     normal: {
         'こんにちは': { romaji: 'konnichiwa', meaning: 'hello', description: 'A common greeting used during the day' },

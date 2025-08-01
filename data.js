@@ -226,7 +226,7 @@ const hiraganaWordData = {
         'むね': { romaji: 'mune', meaning: 'chest' },
         'やね': { romaji: 'yane', meaning: 'roof' },
         'よい': { romaji: 'yoi', meaning: 'good' },
-        'らし': { romaji: 'rashi', meaning: 'seems' },
+        'らしい': { romaji: 'rashii', meaning: 'seems' },
         'わた': { romaji: 'wata', meaning: 'cotton' }
     },
     normal: {

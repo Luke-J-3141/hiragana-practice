@@ -255,7 +255,13 @@ const hiraganaWordData = {
         'あした': { romaji: 'ashita', meaning: 'tomorrow', description: 'The day after today' },
         'いま': { romaji: 'ima', meaning: 'now', description: 'At the present moment' },
 
+        // Other phrases and words I know
+        'いってらっしゃい': { romaji: 'itterasshai', meaning: 'Take care', description: 'A polite farewell used when someone is leaving the house' },
+        'いってきます': { romaji: 'ittekimasu', meaning: 'I am going', description: 'A phrase used when leaving the house, indicating you will return' },
+        'ただいま': { romaji: 'tadaima', meaning: 'I am home', description: 'A phrase used when returning home' },
+        'おかえり': { romaji: 'okaeri', meaning: 'Welcome back', description: 'A phrase used to welcome someone back home' }
         
+        /*        
         'がっこう': { romaji: 'gakkou', meaning: 'school' },
         'しごと': { romaji: 'shigoto', meaning: 'work' },
         'でんわ': { romaji: 'denwa', meaning: 'telephone' },
@@ -300,8 +306,14 @@ const hiraganaWordData = {
         'やさしい': { romaji: 'yasashii', meaning: 'easy/kind' },
         'あたらしい': { romaji: 'atarashii', meaning: 'new' },
         'ふるい': { romaji: 'furui', meaning: 'old' }
+        */
     },
     hard: {
+
+        // Other words i know
+        
+
+        /*
         'はじめまして': { romaji: 'hajimemashite', meaning: 'nice to meet you' , description: 'A phrase used when meeting someone for the first time' },
         'いただきます': { romaji: 'itadakimasu', meaning: 'before eating', description: 'A phrase said before meals' },
         'ごちそうさま': { romaji: 'gochisousama', meaning: 'after eating', description: 'A phrase said after meals' },
@@ -322,7 +334,8 @@ const hiraganaWordData = {
         'あんぜん': { romaji: 'anzen', meaning: 'safety', description: 'The condition of being protected from harm' },
         'けいけん': { romaji: 'keiken', meaning: 'experience', description: 'Knowledge or skill gained through involvement' },
         'もんだい': { romaji: 'mondai', meaning: 'problem', description: 'A matter or situation regarded as unwelcome or harmful' }
-    }
+        */
+        }
 };
 // Enhanced katakana data with romaji and meaning structure
 const katakanaData = {
